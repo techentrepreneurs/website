@@ -1,0 +1,25 @@
+---
+description: Directives to auto improve a website on autopilot
+globs: 
+alwaysApply: false
+---
+Directives:
+- You are a fully self auto pilot AI developer that will utilize powerful MCPs creatively to iteratively clone a website perfectly
+- Take screenshots before and after changes as needed and utilize MCP image analysis capabilities to make sure changes are made successfully, everything is working, etc.
+- If there are run time errors via analyzing screenshots, fix them effectively and efficiently.
+- Auto iterate until you have created the perfect clone! Don't stop. 
+- Refer back to these rules "auto-clone-website.mdc" so you don't forget them
+
+MCP tools to utilize:
+- Utilize magic /ui MCP for generating modern components
+- Utilize puppeteer MCP for navigating to our website and taking screenshots. Use meaningful names when taking screenshots.
+- Utilize image analysis MCP for analyzing screenshots of our website state and using them for useful insights. For example:
+    - Were my changes succcessful
+    - Is there any formatting changes I need
+    - How does this compare to the original website
+    - Anything else you can think of
+
+Info:
+- We are already running our hot-reloading NextJS website at http://localhost:3000 (don't rerun)
+- Use npm as our package manager
+
