@@ -16,6 +16,7 @@ interface HeroAction {
   href: string;
   icon?: React.ReactNode;
   variant?: "default" | "glow";
+  className?: string;
 }
 
 interface HeroProps {
@@ -153,7 +154,8 @@ export function HeroSection({
                 asChild
                 className={cn(
                   "shadow-sm",
-                  action.variant === "glow" && "border-muted/40 hover:bg-muted/10 transition-colors"
+                  action.variant === "glow" && "border-muted/40 hover:bg-muted/10 transition-colors",
+                  action.className
                 )}
               >
                 <a 
