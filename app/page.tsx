@@ -28,7 +28,7 @@ export default function Home() {
             },
           }}
           title="Where Builders Launch, Grow, and Succeed"
-          description="A community for tech founders and builders"
+          description="Join a thriving community of innovators and entrepreneurs."
           actions={[
             {
               text: "Join Discord",
