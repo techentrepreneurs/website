@@ -90,7 +90,8 @@ export function MainNavBar() {
         { 
           name: "Join Discord", 
           url: "https://discord.gg/2ACAxkBhMB", 
-          icon: RocketIcon 
+          icon: RocketIcon,
+          highlight: true
         },
       ]}
       className="mb-16 sm:mb-0"

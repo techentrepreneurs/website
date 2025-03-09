@@ -11,6 +11,7 @@ interface NavItem {
   url: string
   icon: LucideIcon
   onClick?: () => void
+  highlight?: boolean
 }
 
 interface NavBarProps {
@@ -76,6 +77,7 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary",
+                item.highlight && !isActive && "text-primary/90" 
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
@@ -102,6 +104,21 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
                     <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
                   </div>
                 </motion.div>
+              )}
+              {item.highlight && !isActive && (
+                <>
+                  <span className="absolute top-1 right-1.5 h-2 w-2 rounded-full bg-primary animate-pulse" />
+                  <motion.div 
+                    className="absolute inset-0 rounded-full border border-primary/30 -z-10"
+                    initial={{ opacity: 0.3, scale: 0.98 }}
+                    animate={{ opacity: 0.7, scale: 1 }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      duration: 2
+                    }}
+                  />
+                </>
               )}
             </Link>
           )
