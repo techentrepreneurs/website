@@ -4,7 +4,8 @@ import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
 import { DiscordFooter } from "@/components/DiscordFooter";
 import { recentProjects, trendingProjects, newBuilderProjects } from "@/lib/projectData";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { Icons } from "@/components/ui/icons";
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
               href: "#community-features",
             },
           }}
-          title="TECH ENTREPRENEURS"
+          title="Where Builders Launch, Grow, and Succeed"
           description="A community for tech founders and builders"
           actions={[
             {
@@ -38,14 +39,14 @@ export default function Home() {
             {
               text: "GitHub",
               href: "https://github.com/techentrepreneurs",
-              icon: <Github className="h-5 w-5" />,
+              icon: <Icons.gitHub className="h-5 w-5" />,
               variant: "glow"
             }
           ]}
           image={{
             light: "/hero-banner.png",
             dark: "/hero-banner.png",
-            alt: "Tech Entrepreneurs Community"
+            alt: "Tech Entrepreneurs Discord Community"
           }}
         />
         

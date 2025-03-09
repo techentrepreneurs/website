@@ -142,6 +142,10 @@
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
 
+  .max-w-container {
+    max-width: 1280px;
+  }
+
   @keyframes appear {
     0% {
       opacity: 0;
