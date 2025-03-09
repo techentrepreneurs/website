@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/hero-section";
-import { TechNavbar } from "@/components/TechNavbar";
+import { MainNavBar } from "@/components/MainNavBar";
 import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
 import { DiscordFooter } from "@/components/DiscordFooter";
@@ -10,14 +10,7 @@ import { Icons } from "@/components/ui/icons";
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <TechNavbar 
-        logoUrl="/logo.png"
-        ctaButton={{
-          text: "Join Discord",
-          href: "https://discord.gg/techentrepreneurs",
-          icon: undefined
-        }}
-      />
+      <MainNavBar />
       <main>
         <HeroSection 
           badge={{

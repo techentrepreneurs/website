@@ -66,9 +66,9 @@ export function HeroSection({
     if (index === wordIndex) {
       return "opacity-100 transform translate-y-0";
     } else if (index === prevIndex) {
-      return "opacity-0 transform -translate-y-8";
+      return "opacity-0 transform -translate-y-4";
     } else {
-      return "opacity-0 transform translate-y-8";
+      return "opacity-0 transform translate-y-4";
     }
   };
 
@@ -97,22 +97,23 @@ export function HeroSection({
           )}
 
           {/* Title with Animated Words */}
-          <h1 className="relative z-10 inline-block animate-appear bg-gradient-to-r from-foreground to-muted-foreground/80 bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-6xl sm:leading-tight md:text-7xl md:leading-tight tracking-tight max-w-4xl">
-            Where Builders{" "}
-            <span className="inline-block relative min-w-[180px] min-h-[1.2em] align-bottom">
+          <h1 className="relative z-10 animate-appear bg-gradient-to-r from-foreground to-muted-foreground/80 bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-6xl sm:leading-tight md:text-7xl md:leading-tight tracking-tight max-w-4xl flex flex-wrap justify-center items-baseline">
+            <span>Where Builders&nbsp;</span>
+            <span className="relative inline-block">
               {animatedWords.map((word, index) => (
                 <span 
                   key={word} 
                   className={cn(
-                    "absolute left-0 right-0 text-center transition-all duration-700 ease-in-out font-extrabold",
+                    "absolute left-0 transition-all duration-500 ease-in-out font-bold",
                     getAnimationClasses(index),
-                    index === wordIndex && "text-gradient bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent"
+                    index === wordIndex && "text-white/90"
                   )}
                 >
                   {word}
                 </span>
               ))}
-              <span className="opacity-0">{animatedWords[0]}</span>
+              <span className="invisible">{animatedWords.reduce((longest, word) => 
+                word.length > longest.length ? word : longest, '')}</span>
             </span>
           </h1>
 
