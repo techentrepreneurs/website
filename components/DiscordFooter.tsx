@@ -24,7 +24,7 @@ export function DiscordFooter({ logoUrl = "/logo.png" }: DiscordFooterProps) {
               A community of tech entrepreneurs building the future together. Join us to connect, learn, and grow with like-minded innovators.
             </p>
             <div className="mt-4">
-              <Link href="https://discord.gg/techentrepreneurs" target="_blank" legacyBehavior>
+              <Link href="https://discord.gg/2ACAxkBhMB" target="_blank" legacyBehavior>
                 <a>
                   <Button className="bg-[#7289da] hover:bg-[#5f73bc] text-white border-none">
                     <ExternalLink className="mr-2 h-4 w-4" />

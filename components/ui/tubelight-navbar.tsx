@@ -10,16 +10,24 @@ interface NavItem {
   name: string
   url: string
   icon: LucideIcon
+  onClick?: () => void
 }
 
 interface NavBarProps {
   items: NavItem[]
   className?: string
+  activeTabName?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+export function NavBar({ items, className, activeTabName }: NavBarProps) {
+  const [activeTab, setActiveTab] = useState(activeTabName || items[0].name)
   const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    if (activeTabName) {
+      setActiveTab(activeTabName)
+    }
+  }, [activeTabName])
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +55,13 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => {
+                if (item.onClick) {
+                  e.preventDefault()
+                  item.onClick()
+                }
+                setActiveTab(item.name)
+              }}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",

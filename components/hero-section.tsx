@@ -72,6 +72,23 @@ export function HeroSection({
     }
   };
 
+  // Handle smooth scrolling
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only handle local links (starting with #)
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80, // Adjust for navbar height
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
+
   return (
     <section
       className={cn(
@@ -89,7 +106,11 @@ export function HeroSection({
               className="animate-appear gap-2 py-1.5 px-4 text-sm border-border/40 backdrop-blur-sm"
             >
               <span className="text-muted-foreground">{badge.text}</span>
-              <a href={badge.action.href} className="flex items-center gap-1 text-foreground font-medium">
+              <a 
+                href={badge.action.href}
+                onClick={(e) => handleClick(e, badge.action.href)} 
+                className="flex items-center gap-1 text-foreground font-medium"
+              >
                 {badge.action.text}
                 <ArrowRightIcon className="h-3 w-3" />
               </a>
@@ -135,7 +156,11 @@ export function HeroSection({
                   action.variant === "glow" && "border-muted/40 hover:bg-muted/10 transition-colors"
                 )}
               >
-                <a href={action.href} className="flex items-center gap-2">
+                <a 
+                  href={action.href}
+                  onClick={(e) => handleClick(e, action.href)}
+                  className="flex items-center gap-2"
+                >
                   {action.icon}
                   {action.text}
                 </a>

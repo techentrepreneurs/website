@@ -12,45 +12,60 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <MainNavBar />
       <main>
-        <HeroSection 
-          badge={{
-            text: "Join our growing community",
-            action: {
-              text: "Learn more",
-              href: "#community-features",
-            },
-          }}
-          title="Where Builders"
-          animatedWords={["Launch", "Grow", "Succeed"]}
-          description="Join a thriving community of innovators and entrepreneurs."
-          actions={[
-            {
-              text: "Join Discord",
-              href: "https://discord.gg/techentrepreneurs",
-              icon: <ExternalLink className="h-5 w-5" />,
-              variant: "default"
-            },
-            {
-              text: "GitHub",
-              href: "https://github.com/techentrepreneurs",
-              icon: <Icons.gitHub className="h-5 w-5" />,
-              variant: "glow"
-            }
-          ]}
-          image={{
-            light: "/hero-banner.png",
-            dark: "/hero-banner.png",
-            alt: "Tech Entrepreneurs Discord Community"
-          }}
-        />
+        <section id="home">
+          <HeroSection 
+            badge={{
+              text: "Join our growing community",
+              action: {
+                text: "Learn more",
+                href: "#about",
+              },
+            }}
+            title="Where Builders"
+            animatedWords={["Launch", "Grow", "Succeed"]}
+            description="Join a thriving community of innovators and entrepreneurs."
+            actions={[
+              {
+                text: "Join Discord",
+                href: "https://discord.gg/2ACAxkBhMB",
+                icon: <ExternalLink className="h-5 w-5" />,
+                variant: "default"
+              },
+              {
+                text: "View Projects",
+                href: "#builders",
+                icon: <Icons.gitHub className="h-5 w-5" />,
+                variant: "glow"
+              }
+            ]}
+            image={{
+              light: "/hero-banner.png",
+              dark: "/hero-banner.png",
+              alt: "Tech Entrepreneurs Discord Community"
+            }}
+          />
+        </section>
         
-        <CommunityFeatures />
+        <section id="about">
+          <CommunityFeatures />
+        </section>
         
-        <FeaturedBuilderProjects 
-          recentProjects={recentProjects}
-          trendingProjects={trendingProjects}
-          newBuilderProjects={newBuilderProjects}
-        />
+        <section id="builders">
+          <FeaturedBuilderProjects 
+            recentProjects={recentProjects}
+            trendingProjects={trendingProjects}
+            newBuilderProjects={newBuilderProjects}
+          />
+        </section>
+        
+        <section id="events" className="py-20">
+          <div className="container">
+            <h2 className="text-3xl font-bold text-center mb-10">Upcoming Events</h2>
+            <div className="grid place-items-center p-10 bg-muted rounded-lg">
+              <p className="text-xl text-center">Stay tuned for exciting community events!</p>
+            </div>
+          </div>
+        </section>
       </main>
       
       <DiscordFooter logoUrl="/logo.png" />
