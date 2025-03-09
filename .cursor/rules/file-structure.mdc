@@ -13,17 +13,19 @@ TECH-ENTREPRENUERS-DISCORD-WEBSITE
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── page.tsx
-│   └── screenshots
-├── .gitignore
+│   └── file-structure.mdc
+├── components
+│   ├── home
+│   └── ui
 ├── lib
 │   └── utils.ts
-├── node_modules
-├── ts
-├── components
+├── public
+├── screenshots
+├── .gitignore
 ├── eslint.config.mjs
 ├── next-env.d.ts
 ├── next.config.js
 ├── package-lock.json
 ├── package.json
-├── tsconfig.json
-└── README.md
+├── README.md
+└── tsconfig.json
