@@ -5,23 +5,40 @@ import { HomeIcon, Users, CalendarIcon, RocketIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function MainNavBar() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("Home");
+
+  // Force home tab to be selected on initial load
+  useEffect(() => {
+    // Set Home as active on mount
+    setActiveSection("Home");
+    
+    // Optional: Scroll to top on initial load
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   // Handle scroll and update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "builders", "events"];
+      const sections = [
+        { id: "home", name: "Home" },
+        { id: "about", name: "About" },
+        { id: "builders", name: "Builders" },
+        { id: "events", name: "Events" }
+      ];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section);
+        const element = document.getElementById(section.id);
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (
             scrollPosition >= offsetTop &&
             scrollPosition < offsetTop + offsetHeight
           ) {
-            setActiveSection(section);
+            setActiveSection(section.name);
             break;
           }
         }

@@ -22,7 +22,17 @@ interface NavBarProps {
 export function NavBar({ items, className, activeTabName }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(activeTabName || items[0].name)
   const [isMobile, setIsMobile] = useState(false)
+  const [isInitialRender, setIsInitialRender] = useState(true)
 
+  // Set initial render to false after a small delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialRender(false)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Update active tab when activeTabName prop changes
   useEffect(() => {
     if (activeTabName) {
       setActiveTab(activeTabName)
@@ -76,7 +86,10 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
                 <motion.div
                   layoutId="lamp"
                   className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
-                  initial={false}
+                  initial={isInitialRender ? "visible" : false}
+                  variants={{
+                    visible: { opacity: 1, scale: 1 }
+                  }}
                   transition={{
                     type: "spring",
                     stiffness: 300,
