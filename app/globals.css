@@ -45,6 +45,8 @@
   --sidebar-ring: oklch(0.87 0 0);
   --brand: hsl(27 96% 61%);
   --brand-foreground: hsl(31 97% 72%);
+  --brand-rgb: 255, 149, 64; /* RGB equivalent of hsl(27 96% 61%) */
+  --brand-foreground-rgb: 255, 173, 98; /* RGB equivalent of hsl(31 97% 72%) */
 }
 
 .dark {
@@ -81,6 +83,7 @@
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
   --brand: hsl(31 97% 72%);
+  --brand-rgb: 255, 173, 98; /* RGB equivalent of hsl(31 97% 72%) */
 }
 
 @theme inline {

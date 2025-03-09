@@ -4,7 +4,7 @@ import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
 import { DiscordFooter } from "@/components/DiscordFooter";
 import { recentProjects, trendingProjects, newBuilderProjects } from "@/lib/projectData";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 
 export default function Home() {
   return (
@@ -34,6 +34,12 @@ export default function Home() {
               href: "https://discord.gg/techentrepreneurs",
               icon: <ExternalLink className="h-5 w-5" />,
               variant: "default"
+            },
+            {
+              text: "GitHub",
+              href: "https://github.com/techentrepreneurs",
+              icon: <Github className="h-5 w-5" />,
+              variant: "glow"
             }
           ]}
           image={{
