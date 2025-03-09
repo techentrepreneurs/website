@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tech Entrepreneurs Discord Community",
   description: "A community for tech founders, builders, and startups to connect, share progress, and grow together.",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
