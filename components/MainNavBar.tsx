@@ -25,8 +25,7 @@ export function MainNavBar() {
       const sections = [
         { id: "home", name: "Home" },
         { id: "about", name: "About" },
-        { id: "builders", name: "Builders" },
-        { id: "events", name: "Events" }
+        { id: "builders", name: "Builders" }
       ];
       const scrollPosition = window.scrollY + 100;
 
@@ -80,12 +79,6 @@ export function MainNavBar() {
           url: "/#builders", 
           icon: Users,
           onClick: () => scrollToSection("builders"),
-        },
-        { 
-          name: "Events", 
-          url: "/#events", 
-          icon: CalendarIcon,
-          onClick: () => scrollToSection("events"),
         },
         { 
           name: "Join Discord", 
