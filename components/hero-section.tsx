@@ -31,6 +31,7 @@ interface HeroProps {
   animatedWords?: string[];
   description: string;
   actions: HeroAction[];
+  customActions?: React.ReactNode;
   image: {
     light: string;
     dark: string;
@@ -44,6 +45,7 @@ export function HeroSection({
   animatedWords = ["Launch", "Grow", "Succeed"],
   description,
   actions,
+  customActions,
   image,
 }: HeroProps) {
   const { resolvedTheme } = useTheme();
@@ -145,30 +147,39 @@ export function HeroSection({
           </p>
 
           {/* Actions */}
-          <div className="relative z-10 flex animate-appear justify-center gap-4 opacity-0 delay-300">
-            {actions.map((action, index) => (
-              <Button 
-                key={index} 
-                variant={action.variant === "glow" ? "outline" : "default"} 
-                size="lg" 
-                asChild
-                className={cn(
-                  "shadow-sm",
-                  action.variant === "glow" && "border-muted/40 hover:bg-muted/10 transition-colors",
-                  action.className
-                )}
-              >
-                <a 
-                  href={action.href}
-                  onClick={(e) => handleClick(e, action.href)}
-                  className="flex items-center gap-2"
+          {actions.length > 0 && (
+            <div className="relative z-10 flex animate-appear justify-center gap-4 opacity-0 delay-300">
+              {actions.map((action, index) => (
+                <Button 
+                  key={index} 
+                  variant={action.variant === "glow" ? "outline" : "default"} 
+                  size="lg" 
+                  asChild
+                  className={cn(
+                    "shadow-sm",
+                    action.variant === "glow" && "border-muted/40 hover:bg-muted/10 transition-colors",
+                    action.className
+                  )}
                 >
-                  {action.icon}
-                  {action.text}
-                </a>
-              </Button>
-            ))}
-          </div>
+                  <a 
+                    href={action.href}
+                    onClick={(e) => handleClick(e, action.href)}
+                    className="flex items-center gap-2"
+                  >
+                    {action.icon}
+                    {action.text}
+                  </a>
+                </Button>
+              ))}
+            </div>
+          )}
+          
+          {/* Custom Actions */}
+          {customActions && (
+            <div className="relative z-[99] flex items-center justify-center w-full mt-4 pointer-events-auto">
+              {customActions}
+            </div>
+          )}
 
           {/* Image with Glow */}
           <div className="relative mt-12 w-full max-w-[1200px]">

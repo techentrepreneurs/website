@@ -84,7 +84,10 @@ export function MainNavBar() {
           name: "Join Discord", 
           url: "https://discord.gg/2ACAxkBhMB", 
           icon: RocketIcon,
-          highlight: true
+          highlight: true,
+          onClick: () => {
+            window.open("https://discord.gg/2ACAxkBhMB", "_blank", "noopener,noreferrer");
+          }
         },
       ]}
       className="mb-16 sm:mb-0"
