@@ -1,0 +1,29 @@
+---
+description: Starting file structure for our project
+globs: 
+---
+TECH-ENTREPRENUERS-DISCORD-WEBSITE
+├── .cursor
+│   └── rules
+│       ├── auto-clone-website.mdc
+│       └── dev-rules.mdc
+├── mcp.json
+├── app
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── screenshots
+├── .gitignore
+├── lib
+│   └── utils.ts
+├── node_modules
+├── ts
+├── components
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+└── README.md
