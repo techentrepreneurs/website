@@ -27,7 +27,8 @@ export default function Home() {
               href: "#community-features",
             },
           }}
-          title="Where Builders Launch, Grow, and Succeed"
+          title="Where Builders"
+          animatedWords={["Launch", "Grow", "Succeed"]}
           description="Join a thriving community of innovators and entrepreneurs."
           actions={[
             {
