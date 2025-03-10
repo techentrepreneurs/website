@@ -24,7 +24,7 @@ export function ModernFooter({
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-background py-16">
+    <footer className="relative overflow-hidden bg-background">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#5865F2]/10 to-transparent"></div>
       
@@ -65,9 +65,9 @@ export function ModernFooter({
         </div>
       </div>
       
-      {/* Glass Effect Footer */}
-      <div className="container relative z-10 mx-auto px-4 mt-8">
-        <div className="bg-background/5 border border-border backdrop-blur-lg rounded-lg shadow-lg px-6 py-4">
+      {/* Glass Effect Footer - Full Width */}
+      <div className="relative z-10 bg-background/5 border-t border-border backdrop-blur-lg shadow-lg mt-8">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <Image src={logoUrl} alt="Tech Startups Logo" width={24} height={24} className="rounded-sm" />
