@@ -35,7 +35,7 @@ export function ModernFooter({
             Ready to build?
           </h2>
           
-          <p className="relative z-10 max-w-[550px] font-medium text-gray-400 sm:text-lg">
+          <p className="relative z-10 w-full font-medium text-gray-400 sm:text-lg">
             Connect, share ideas, and grow together in our active builder community.
           </p>
           
@@ -45,7 +45,7 @@ export function ModernFooter({
             rel="noopener noreferrer"
             className={cn(
               "group relative z-[100] inline-flex h-12 cursor-pointer items-center justify-center rounded-xl bg-[#5865F2] px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-[#4752c4] hover:scale-105 active:scale-95",
-              "shadow-lg"
+              "shadow-lg mt-2"
             )}
           >
             <span className="flex items-center gap-2">
