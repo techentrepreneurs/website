@@ -12,13 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  Clock, 
-  ExternalLink, 
-  Github, 
-  MessageSquare
-} from "lucide-react";
+import { Clock } from "lucide-react";
 
 interface ProjectAuthor {
   name: string;
@@ -63,40 +57,40 @@ export function FeaturedBuilderProjects({
     <section className="py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 sm:mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             {description}
           </p>
         </div>
         
         <Tabs defaultValue="recent" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList>
-              <TabsTrigger value="recent">Recent Updates</TabsTrigger>
-              <TabsTrigger value="trending">Trending Projects</TabsTrigger>
-              <TabsTrigger value="new">New Builders</TabsTrigger>
+          <div className="flex justify-center mb-10">
+            <TabsList className="bg-black/20 border border-zinc-800/50 rounded-full">
+              <TabsTrigger value="recent" className="rounded-full">Recent Updates</TabsTrigger>
+              <TabsTrigger value="trending" className="rounded-full">Trending Projects</TabsTrigger>
+              <TabsTrigger value="new" className="rounded-full">New Builders</TabsTrigger>
             </TabsList>
           </div>
-          
-          <TabsContent value="recent" className="space-y-4">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {recentProjects.map((project) => (
+
+          <TabsContent value="recent" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentProjects.slice(0, 3).map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </TabsContent>
           
-          <TabsContent value="trending" className="space-y-4">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {trendingProjects.map((project) => (
+          <TabsContent value="trending" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {trendingProjects.slice(0, 3).map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </TabsContent>
           
-          <TabsContent value="new" className="space-y-4">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {newBuilderProjects.map((project) => (
+          <TabsContent value="new" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {newBuilderProjects.slice(0, 3).map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
@@ -107,74 +101,96 @@ export function FeaturedBuilderProjects({
   );
 }
 
+function getCategoryData(category?: string): { color: string, label: string, badgeClass: string } {
+  switch(category?.toLowerCase()) {
+    case 'saas':
+      return {
+        color: 'border-purple-500',
+        label: 'SaaS',
+        badgeClass: 'bg-purple-950/80 text-white'
+      };
+    case 'ai':
+      return {
+        color: 'border-amber-500',
+        label: 'AI',
+        badgeClass: 'bg-amber-950/80 text-white'
+      };
+    case 'edtech':
+      return {
+        color: 'border-emerald-500',
+        label: 'EdTech',
+        badgeClass: 'bg-emerald-950/80 text-white'
+      };
+    default:
+      return {
+        color: 'border-blue-500',
+        label: category || 'Other',
+        badgeClass: 'bg-blue-950/80 text-white'
+      };
+  }
+}
+
+function getStatusBadgeClass(status: "Active" | "Funding") {
+  return status === "Active" 
+    ? "bg-green-500" 
+    : "bg-blue-500";
+}
+
 function ProjectCard({ project }: { project: Project }) {
+  const categoryData = getCategoryData(project.category);
+  
   return (
-    <Card className="overflow-hidden transition-all duration-200 h-full flex flex-col hover:shadow-md">
-      <CardHeader className="space-y-1">
-        <div className="flex justify-between items-start">
-          {project.category && (
-            <Badge variant="outline" className="mb-2">
-              {project.category}
+    <Card className={`overflow-hidden bg-[#121212] border border-zinc-800/50 ${categoryData.color} rounded-lg shadow-md`}>
+      <CardHeader className="pt-5 pb-2 px-5">
+        <div className="flex items-start justify-between">
+          <div>
+            {project.category && (
+              <Badge 
+                className={`mb-3 px-2 py-0.5 text-xs font-medium ${categoryData.badgeClass}`}
+              >
+                {categoryData.label}
+              </Badge>
+            )}
+            <CardTitle className="text-xl font-bold text-white">
+              {project.name}
+            </CardTitle>
+            <CardDescription className="text-sm text-zinc-400 mt-1">
+              {project.description}
+            </CardDescription>
+          </div>
+          <div>
+            <Badge 
+              className={`text-xs font-medium text-black ${getStatusBadgeClass(project.status)}`}
+            >
+              {project.status}
             </Badge>
-          )}
-          <Badge
-            className={
-              project.status === "Active"
-                ? "bg-green-100 text-green-600 dark:bg-green-800/20 dark:text-green-400"
-                : "bg-amber-100 text-amber-600 dark:bg-amber-800/20 dark:text-amber-400"
-            }
-          >
-            {project.status}
-          </Badge>
+          </div>
         </div>
-        <CardTitle className="text-xl">{project.name}</CardTitle>
-        <CardDescription>{project.description}</CardDescription>
       </CardHeader>
       
-      <CardContent className="flex-grow">
-        <div className="space-y-4">
-          <div className="flex items-start gap-3 rounded-md border p-3 bg-muted/50">
-            <Avatar className="h-8 w-8 border-2 border-background">
-              <AvatarImage 
-                src={project.update.author.image || `https://avatar.vercel.sh/${project.update.author.handle}`} 
-                alt={project.update.author.name} 
-              />
-              <AvatarFallback>{project.update.author.name[0]}</AvatarFallback>
-            </Avatar>
-            <div className="space-y-1">
-              <p className="text-sm leading-relaxed">{project.update.message}</p>
-              <div className="flex items-center text-xs text-muted-foreground">
-                <span>Updated {project.update.timestamp} by @{project.update.author.handle}</span>
-              </div>
-            </div>
-          </div>
+      <CardContent className="px-5 pt-1 pb-4">
+        <div className="mt-1 pl-3 border-l border-zinc-700 mb-4">
+          <p className="text-sm text-zinc-300 italic">
+            "{project.update.message}"
+          </p>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-zinc-500">
+          <Clock className="h-3.5 w-3.5" />
+          <span>Updated {project.update.timestamp} by @{project.update.author.handle}</span>
         </div>
       </CardContent>
       
-      <CardFooter className="flex gap-2 pt-4">
-        <Button variant="outline" className="flex-1" asChild>
+      <CardFooter className="border-t border-zinc-800/30 py-3 px-5">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="text-zinc-300 hover:text-white hover:bg-zinc-800/50 px-0" 
+          asChild
+        >
           <a href={project.channelLink}>
-            <MessageSquare className="h-4 w-4 mr-2" />
             View Channel
           </a>
         </Button>
-        
-        <div className="flex gap-2">
-          {project.githubLink && (
-            <Button size="icon" variant="outline" asChild>
-              <a href={project.githubLink} target="_blank" rel="noreferrer">
-                <Github className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-          {project.externalLink && (
-            <Button size="icon" variant="outline" asChild>
-              <a href={project.externalLink} target="_blank" rel="noreferrer">
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-        </div>
       </CardFooter>
     </Card>
   );
