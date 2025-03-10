@@ -3,16 +3,14 @@
 import React from "react";
 import { 
   Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
+  CardContent,
+  CardFooter
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ProjectAuthor {
   name: string;
@@ -65,10 +63,10 @@ export function FeaturedBuilderProjects({
         
         <Tabs defaultValue="recent" className="w-full">
           <div className="flex justify-center mb-10">
-            <TabsList className="bg-black/20 border border-zinc-800/50 rounded-full">
-              <TabsTrigger value="recent" className="rounded-full">Recent Updates</TabsTrigger>
-              <TabsTrigger value="trending" className="rounded-full">Trending Projects</TabsTrigger>
-              <TabsTrigger value="new" className="rounded-full">New Builders</TabsTrigger>
+            <TabsList className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-full">
+              <TabsTrigger value="recent" className="rounded-full text-sm">Recent Updates</TabsTrigger>
+              <TabsTrigger value="trending" className="rounded-full text-sm">Trending Projects</TabsTrigger>
+              <TabsTrigger value="new" className="rounded-full text-sm">New Builders</TabsTrigger>
             </TabsList>
           </div>
 
@@ -101,97 +99,93 @@ export function FeaturedBuilderProjects({
   );
 }
 
-function getCategoryData(category?: string): { color: string, label: string, badgeClass: string } {
+function getCategoryBorderColor(category?: string): string {
   switch(category?.toLowerCase()) {
     case 'saas':
-      return {
-        color: 'border-purple-500',
-        label: 'SaaS',
-        badgeClass: 'bg-purple-950/80 text-white'
-      };
+      return 'border-purple-500/30';
     case 'ai':
-      return {
-        color: 'border-amber-500',
-        label: 'AI',
-        badgeClass: 'bg-amber-950/80 text-white'
-      };
+      return 'border-amber-500/30';
     case 'edtech':
-      return {
-        color: 'border-emerald-500',
-        label: 'EdTech',
-        badgeClass: 'bg-emerald-950/80 text-white'
-      };
+      return 'border-emerald-500/30';
     default:
-      return {
-        color: 'border-blue-500',
-        label: category || 'Other',
-        badgeClass: 'bg-blue-950/80 text-white'
-      };
+      return 'border-blue-500/30';
   }
 }
 
-function getStatusBadgeClass(status: "Active" | "Funding") {
-  return status === "Active" 
-    ? "bg-green-500" 
-    : "bg-blue-500";
+function getCategoryLabel(category?: string): string {
+  switch(category?.toLowerCase()) {
+    case 'saas':
+      return 'SaaS';
+    case 'ai':
+      return 'AI';
+    case 'edtech':
+      return 'EdTech';
+    default:
+      return category || 'Other';
+  }
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const categoryData = getCategoryData(project.category);
+  const borderColor = getCategoryBorderColor(project.category);
+  const categoryLabel = getCategoryLabel(project.category);
   
   return (
-    <Card className={`overflow-hidden bg-[#121212] border border-zinc-800/50 ${categoryData.color} rounded-lg shadow-md`}>
-      <CardHeader className="pt-5 pb-2 px-5">
-        <div className="flex items-start justify-between">
-          <div>
-            {project.category && (
-              <Badge 
-                className={`mb-3 px-2 py-0.5 text-xs font-medium ${categoryData.badgeClass}`}
-              >
-                {categoryData.label}
-              </Badge>
-            )}
-            <CardTitle className="text-xl font-bold text-white">
-              {project.name}
-            </CardTitle>
-            <CardDescription className="text-sm text-zinc-400 mt-1">
-              {project.description}
-            </CardDescription>
-          </div>
-          <div>
-            <Badge 
-              className={`text-xs font-medium text-black ${getStatusBadgeClass(project.status)}`}
-            >
-              {project.status}
+    <div className={cn(
+      "group relative rounded-xl overflow-hidden backdrop-blur-md border",
+      "transition-all duration-300 hover:bg-zinc-800/10",
+      "bg-zinc-900/40",
+      borderColor
+    )}>
+      {/* Content */}
+      <div className="relative h-full flex flex-col p-4">
+        {/* Top section with category */}
+        <div className="mb-4">
+          {project.category && (
+            <Badge className="bg-black/40 hover:bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-0.5">
+              {categoryLabel}
             </Badge>
-          </div>
+          )}
         </div>
-      </CardHeader>
-      
-      <CardContent className="px-5 pt-1 pb-4">
-        <div className="mt-1 pl-3 border-l border-zinc-700 mb-4">
-          <p className="text-sm text-zinc-300 italic">
-            "{project.update.message}"
+        
+        {/* Title and description */}
+        <div>
+          <h2 className="text-xl font-bold text-white mb-2">
+            {project.name}
+          </h2>
+          <p className="text-zinc-300 text-sm">
+            {project.description}
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs text-zinc-500">
-          <Clock className="h-3.5 w-3.5" />
-          <span>Updated {project.update.timestamp} by @{project.update.author.handle}</span>
+        
+        {/* Update message */}
+        <div className="my-4 flex-grow">
+          <div className="pl-3 border-l border-zinc-700/50">
+            <p className="text-zinc-300 text-sm italic">
+              "{project.update.message}"
+            </p>
+          </div>
         </div>
-      </CardContent>
-      
-      <CardFooter className="border-t border-zinc-800/30 py-3 px-5">
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="text-zinc-300 hover:text-white hover:bg-zinc-800/50 px-0" 
-          asChild
-        >
-          <a href={project.channelLink}>
-            View Channel
-          </a>
-        </Button>
-      </CardFooter>
-    </Card>
+        
+        {/* Bottom section with timestamp */}
+        <div className="mt-auto pt-2">
+          <div className="flex items-center text-xs text-zinc-400 mb-3">
+            <Clock className="h-3.5 w-3.5 mr-1.5" />
+            <span>Updated {project.update.timestamp} by @{project.update.author.handle}</span>
+          </div>
+          
+          {/* View Channel Button */}
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="w-full text-zinc-300 hover:text-white hover:bg-white/5 rounded-md mt-2"
+            asChild
+          >
+            <a href={project.channelLink}>
+              View Channel
+            </a>
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 } 
