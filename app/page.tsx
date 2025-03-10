@@ -41,7 +41,7 @@ export default function Home() {
             image={{
               light: "/hero-banner.png",
               dark: "/hero-banner.png",
-              alt: "Tech Entrepreneurs Discord Community"
+              alt: "Tech Startups Community"
             }}
           />
         </section>

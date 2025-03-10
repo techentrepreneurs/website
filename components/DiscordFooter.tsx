@@ -16,8 +16,8 @@ export function DiscordFooter({ logoUrl = "/logo.png" }: DiscordFooterProps) {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div className="md:max-w-sm">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={logoUrl} alt="Tech Entrepreneurs Logo" width={32} height={32} />
-              <h2 className="text-lg font-bold text-[#7289da]">TechEntrepreneurs</h2>
+              <Image src={logoUrl} alt="Tech Startups Logo" width={32} height={32} />
+              <h2 className="text-lg font-bold text-[#7289da]">techstartups.gg</h2>
             </Link>
 
             <p className="text-sm text-gray-300 mt-5">
@@ -81,14 +81,14 @@ export function DiscordFooter({ logoUrl = "/logo.png" }: DiscordFooterProps) {
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} TechEntrepreneurs. All rights reserved.
+              © {new Date().getFullYear()} techstartups.gg. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="https://twitter.com/techentrepreneurs" className="text-gray-300 hover:text-[#7289da]" target="_blank">
+              <Link href="https://twitter.com/techstartups_gg" className="text-gray-300 hover:text-[#7289da]" target="_blank">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="https://github.com/techentrepreneurs" className="text-gray-300 hover:text-[#7289da]" target="_blank">
+              <Link href="https://github.com/techstartups-gg" className="text-gray-300 hover:text-[#7289da]" target="_blank">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
