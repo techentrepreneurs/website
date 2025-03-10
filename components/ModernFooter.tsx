@@ -29,8 +29,8 @@ export function ModernFooter({
       <div className="absolute inset-0 bg-gradient-to-t from-[#5865F2]/10 to-transparent"></div>
       
       {/* Discord Call to Action */}
-      <div className="container relative z-10 mx-auto px-4 py-16 md:py-20">
-        <div className="flex flex-col items-center text-center gap-6">
+      <div className="container relative z-10 mx-auto px-4 py-24 md:py-32">
+        <div className="flex flex-col items-center text-center gap-8">
           <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
             Ready to build?
           </h2>
@@ -45,7 +45,7 @@ export function ModernFooter({
             rel="noopener noreferrer"
             className={cn(
               "group relative z-[100] inline-flex h-12 cursor-pointer items-center justify-center rounded-xl bg-[#5865F2] px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-[#4752c4] hover:scale-105 active:scale-95",
-              "shadow-lg mt-2"
+              "shadow-lg mt-4"
             )}
           >
             <span className="flex items-center gap-2">
@@ -66,8 +66,8 @@ export function ModernFooter({
       </div>
       
       {/* Glass Effect Footer - Full Width */}
-      <div className="relative z-10 bg-background/5 border-t border-border backdrop-blur-lg shadow-lg mt-8">
-        <div className="container mx-auto px-4 py-4">
+      <div className="relative z-10 bg-background/5 border-t border-border backdrop-blur-lg shadow-lg mt-4">
+        <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <Image src={logoUrl} alt="Tech Startups Logo" width={24} height={24} className="rounded-sm" />
