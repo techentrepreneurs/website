@@ -1,3 +1,5 @@
+import { env } from "./env";
+
 export const recentProjects = [
   {
     id: "1",
@@ -6,17 +8,18 @@ export const recentProjects = [
     category: "Creative Tech",
     status: "Active" as const,
     update: {
-      message: "Reached out to another developer to hire them for 3 months full time. If it works out well, it might transition to a full time position.",
+      message:
+        "Reached out to another developer to hire them for 3 months full time. If it works out well, it might transition to a full time position.",
       author: {
         name: "Lost",
         handle: "lostdoesart",
-        image: ""
+        image: "",
       },
-      timestamp: "Just now"
+      timestamp: "Just now",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
     githubLink: "",
-    externalLink: ""
+    externalLink: "",
   },
   {
     id: "2",
@@ -25,16 +28,17 @@ export const recentProjects = [
     category: "Design",
     status: "Active" as const,
     update: {
-      message: "Acquired a team of 9 designers, 3 video editors and 2 developers. Made an agreement with a rust design group to handle the workload while I manage marketing.",
+      message:
+        "Acquired a team of 9 designers, 3 video editors and 2 developers. Made an agreement with a rust design group to handle the workload while I manage marketing.",
       author: {
         name: "Lost",
         handle: "lostdoesart",
-        image: ""
+        image: "",
       },
-      timestamp: "Just now"
+      timestamp: "Just now",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
-    externalLink: "https://rustgfx.com"
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+    externalLink: "https://rustgfx.com",
   },
   {
     id: "3",
@@ -43,18 +47,19 @@ export const recentProjects = [
     category: "Tech Consulting",
     status: "Active" as const,
     update: {
-      message: "Had a phenomenal call with a prospective client - big potential project in immediate pipeline.",
+      message:
+        "Had a phenomenal call with a prospective client - big potential project in immediate pipeline.",
       author: {
         name: "Midas",
         handle: "midaswolf",
-        image: ""
+        image: "",
       },
-      timestamp: "Recently"
+      timestamp: "Recently",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
     githubLink: "",
-    externalLink: ""
-  }
+    externalLink: "",
+  },
 ];
 
 export const trendingProjects = [
@@ -65,16 +70,17 @@ export const trendingProjects = [
     category: "Web Development",
     status: "Active" as const,
     update: {
-      message: "Main page is basically done! Currently working on tweaks, mobile support, and adding light mode styling. Next I'll focus on adding each other page.",
+      message:
+        "Main page is basically done! Currently working on tweaks, mobile support, and adding light mode styling. Next I'll focus on adding each other page.",
       author: {
         name: "Patrick",
         handle: "pyuwu17",
-        image: ""
+        image: "",
       },
-      timestamp: "Recently"
+      timestamp: "Recently",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
-    externalLink: ""
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+    externalLink: "",
   },
   {
     id: "5",
@@ -83,17 +89,18 @@ export const trendingProjects = [
     category: "Design",
     status: "Active" as const,
     update: {
-      message: "The team is very open to getting art direction and guidance at the start of our collaboration. Excited to grow our service offerings.",
+      message:
+        "The team is very open to getting art direction and guidance at the start of our collaboration. Excited to grow our service offerings.",
       author: {
         name: "Lost",
         handle: "lostdoesart",
-        image: ""
+        image: "",
       },
-      timestamp: "Just now"
+      timestamp: "Just now",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
     githubLink: "",
-    externalLink: "https://rustgfx.com"
+    externalLink: "https://rustgfx.com",
   },
   {
     id: "6",
@@ -102,17 +109,18 @@ export const trendingProjects = [
     category: "Creative Tech",
     status: "Funding" as const,
     update: {
-      message: "Expanding our team with new talent. Looking to grow our creative capabilities with specialized developers.",
+      message:
+        "Expanding our team with new talent. Looking to grow our creative capabilities with specialized developers.",
       author: {
         name: "Lost",
         handle: "lostdoesart",
-        image: ""
+        image: "",
       },
-      timestamp: "Just now"
+      timestamp: "Just now",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
-    externalLink: ""
-  }
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+    externalLink: "",
+  },
 ];
 
 export const newBuilderProjects = [
@@ -123,15 +131,16 @@ export const newBuilderProjects = [
     category: "Tech Consulting",
     status: "Active" as const,
     update: {
-      message: "New client opportunities are expanding our project pipeline. Looking to grow our impact in the tech space.",
+      message:
+        "New client opportunities are expanding our project pipeline. Looking to grow our impact in the tech space.",
       author: {
         name: "Midas",
         handle: "midaswolf",
-        image: ""
+        image: "",
       },
-      timestamp: "Recently"
+      timestamp: "Recently",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB"
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
   },
   {
     id: "8",
@@ -140,16 +149,17 @@ export const newBuilderProjects = [
     category: "Web Development",
     status: "Active" as const,
     update: {
-      message: "Making good progress on our web platform. Planning to add more pages soon after completing current mobile optimization work.",
+      message:
+        "Making good progress on our web platform. Planning to add more pages soon after completing current mobile optimization work.",
       author: {
         name: "Patrick",
         handle: "pyuwu17",
-        image: ""
+        image: "",
       },
-      timestamp: "Recently"
+      timestamp: "Recently",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB",
-    githubLink: ""
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+    githubLink: "",
   },
   {
     id: "9",
@@ -158,14 +168,15 @@ export const newBuilderProjects = [
     category: "Design",
     status: "Active" as const,
     update: {
-      message: "Building a comprehensive design and development service. Recently expanded with a large team to handle all client workload.",
+      message:
+        "Building a comprehensive design and development service. Recently expanded with a large team to handle all client workload.",
       author: {
         name: "Lost",
         handle: "lostdoesart",
-        image: ""
+        image: "",
       },
-      timestamp: "Just now"
+      timestamp: "Just now",
     },
-    channelLink: "https://discord.gg/2ACAxkBhMB"
-  }
-]; 
+    channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+  },
+];

@@ -6,15 +6,16 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Glow } from "@/components/ui/glow";
+import { env } from "@/lib/env";
 
 interface ModernFooterProps {
   logoUrl?: string;
   discordInviteUrl?: string;
 }
 
-export function ModernFooter({ 
-  logoUrl = "/logo.png", 
-  discordInviteUrl = "https://discord.gg/2ACAxkBhMB" 
+export function ModernFooter({
+  logoUrl = "/logo.png",
+  discordInviteUrl = env.NEXT_PUBLIC_DISCORD_URL,
 }: ModernFooterProps) {
   const links = [
     { href: "/", label: "Home" },
@@ -27,18 +28,19 @@ export function ModernFooter({
     <footer className="relative overflow-hidden bg-background">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#5865F2]/10 to-transparent"></div>
-      
+
       {/* Discord Call to Action */}
       <div className="container relative z-10 mx-auto px-4 py-24 md:py-32">
         <div className="flex flex-col items-center text-center gap-8">
           <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
             Ready to build?
           </h2>
-          
+
           <p className="relative z-10 w-full font-medium text-gray-400 sm:text-lg">
-            Connect, share ideas, and grow together in our active builder community.
+            Connect, share ideas, and grow together in our active builder
+            community.
           </p>
-          
+
           <a
             href={discordInviteUrl}
             target="_blank"
@@ -56,31 +58,34 @@ export function ModernFooter({
               <ExternalLink className="ml-1 h-4 w-4 opacity-0 transition-all duration-300 group-hover:opacity-100" />
             </span>
           </a>
-          
+
           {/* Bottom-oriented glow */}
-          <Glow
-            variant="bottom"
-            className="opacity-50"
-          />
+          <Glow variant="bottom" className="opacity-50" />
         </div>
       </div>
-      
+
       {/* Glass Effect Footer - Full Width */}
       <div className="relative z-10 bg-background/5 border-t border-border backdrop-blur-lg shadow-lg mt-4">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <Image src={logoUrl} alt="Tech Startups Logo" width={24} height={24} className="rounded-sm" />
+              <Image
+                src={logoUrl}
+                alt="Tech Startups Logo"
+                width={24}
+                height={24}
+                className="rounded-sm"
+              />
               <span className="text-sm font-medium text-foreground/80">
                 © {new Date().getFullYear()} techstartups.gg
               </span>
             </div>
-            
+
             <div className="flex items-center gap-6">
               {links.map((link, i) => (
-                <Link 
+                <Link
                   key={i}
-                  href={link.href} 
+                  href={link.href}
                   className="text-sm text-foreground/80 hover:text-primary transition-colors"
                 >
                   {link.label}
@@ -104,4 +109,4 @@ const DiscordLogo = ({ className }: { className?: string }) => (
   >
     <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
   </svg>
-); 
+);

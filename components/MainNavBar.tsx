@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import { NavBar } from "@/components/ui/tubelight-navbar";
+import { env } from "@/lib/env";
 import { HomeIcon, Users, CalendarIcon, RocketIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -11,7 +12,7 @@ export function MainNavBar() {
   useEffect(() => {
     // Set Home as active on mount
     setActiveSection("Home");
-    
+
     // Optional: Scroll to top on initial load
     window.scrollTo({
       top: 0,
@@ -25,7 +26,7 @@ export function MainNavBar() {
       const sections = [
         { id: "home", name: "Home" },
         { id: "about", name: "About" },
-        { id: "builders", name: "Builders" }
+        { id: "builders", name: "Builders" },
       ];
       const scrollPosition = window.scrollY + 100;
 
@@ -60,38 +61,42 @@ export function MainNavBar() {
   };
 
   return (
-    <NavBar 
+    <NavBar
       items={[
-        { 
-          name: "Home", 
-          url: "/#home", 
+        {
+          name: "Home",
+          url: "/#home",
           icon: HomeIcon,
           onClick: () => scrollToSection("home"),
         },
-        { 
-          name: "About", 
-          url: "/#about", 
+        {
+          name: "About",
+          url: "/#about",
           icon: Users,
           onClick: () => scrollToSection("about"),
         },
-        { 
-          name: "Builders", 
-          url: "/#builders", 
+        {
+          name: "Builders",
+          url: "/#builders",
           icon: Users,
           onClick: () => scrollToSection("builders"),
         },
-        { 
-          name: "Join Discord", 
-          url: "https://discord.gg/2ACAxkBhMB", 
+        {
+          name: "Join Discord",
+          url: env.NEXT_PUBLIC_DISCORD_URL,
           icon: RocketIcon,
           highlight: true,
           onClick: () => {
-            window.open("https://discord.gg/2ACAxkBhMB", "_blank", "noopener,noreferrer");
-          }
+            window.open(
+              env.NEXT_PUBLIC_DISCORD_URL,
+              "_blank",
+              "noopener,noreferrer"
+            );
+          },
         },
       ]}
       className="mb-16 sm:mb-0"
       activeTabName={activeSection}
     />
   );
-} 
+}

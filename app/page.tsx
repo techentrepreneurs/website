@@ -4,10 +4,15 @@ import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
 import { ModernFooter } from "@/components/ModernFooter";
 import { StatsSection } from "@/components/StatsSection";
-import { recentProjects, trendingProjects, newBuilderProjects } from "@/lib/projectData";
+import {
+  recentProjects,
+  trendingProjects,
+  newBuilderProjects,
+} from "@/lib/projectData";
 import { ExternalLink } from "lucide-react";
 import { Icons } from "@/components/ui/icons";
 import { DiscordButton } from "@/components/ui/discord-button";
+import { env } from "@/lib/env";
 
 export default function Home() {
   return (
@@ -15,7 +20,7 @@ export default function Home() {
       <MainNavBar />
       <main>
         <section id="home">
-          <HeroSection 
+          <HeroSection
             badge={{
               text: "Join our growing community",
               action: {
@@ -32,8 +37,8 @@ export default function Home() {
                 <div className="mb-8 w-full">
                   <StatsSection />
                 </div>
-                <DiscordButton 
-                  href="https://discord.gg/2ACAxkBhMB" 
+                <DiscordButton
+                  href={env.NEXT_PUBLIC_DISCORD_URL}
                   className="transform scale-110 mt-8"
                 />
               </div>
@@ -41,25 +46,28 @@ export default function Home() {
             image={{
               light: "/hero-banner.png",
               dark: "/hero-banner.png",
-              alt: "Tech Startups Community"
+              alt: "Tech Startups Community",
             }}
           />
         </section>
-        
+
         <section id="about">
           <CommunityFeatures />
         </section>
-        
+
         <section id="builders">
-          <FeaturedBuilderProjects 
+          <FeaturedBuilderProjects
             recentProjects={recentProjects}
             trendingProjects={trendingProjects}
             newBuilderProjects={newBuilderProjects}
           />
         </section>
       </main>
-      
-      <ModernFooter logoUrl="/logo.png" discordInviteUrl="https://discord.gg/2ACAxkBhMB" />
+
+      <ModernFooter
+        logoUrl="/logo.png"
+        discordInviteUrl={env.NEXT_PUBLIC_DISCORD_URL}
+      />
     </div>
   );
 }

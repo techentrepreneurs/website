@@ -3,6 +3,7 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { env } from "@/lib/env";
 
 interface DiscordButtonProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -11,7 +12,15 @@ interface DiscordButtonProps
 }
 
 const DiscordButton = React.forwardRef<HTMLAnchorElement, DiscordButtonProps>(
-  ({ href = "https://discord.gg/2ACAxkBhMB", text = "Join Discord", className, ...props }, ref) => {
+  (
+    {
+      href = env.NEXT_PUBLIC_DISCORD_URL,
+      text = "Join Discord",
+      className,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <a
         ref={ref}
@@ -51,4 +60,4 @@ const DiscordLogo = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export { DiscordButton }; 
+export { DiscordButton };

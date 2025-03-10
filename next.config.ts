@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  output: "export",
 
   /* config options here */
   images: {
-    domains: ['i.imgur.com', 'images.unsplash.com'],
-    unoptimized: true
+    domains: ["i.imgur.com", "images.unsplash.com"],
+    unoptimized: true,
   },
 };
 
