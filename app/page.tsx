@@ -29,13 +29,13 @@ export default function Home() {
             actions={[]}
             customActions={
               <div className="mt-2 relative z-[101] pointer-events-auto flex flex-col items-center">
-                <DiscordButton 
-                  href="https://discord.gg/2ACAxkBhMB" 
-                  className="transform scale-110"
-                />
-                <div className="mt-16 mb-8 w-full">
+                <div className="mb-8 w-full">
                   <StatsSection />
                 </div>
+                <DiscordButton 
+                  href="https://discord.gg/2ACAxkBhMB" 
+                  className="transform scale-110 mt-8"
+                />
               </div>
             }
             image={{
