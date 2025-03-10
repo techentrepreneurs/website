@@ -24,7 +24,7 @@ export function ModernFooter({
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-black py-16">
+    <footer className="relative overflow-hidden bg-background py-16">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#5865F2]/10 to-transparent"></div>
       
@@ -36,7 +36,7 @@ export function ModernFooter({
           </h2>
           
           <p className="relative z-10 max-w-[550px] font-medium text-gray-400 sm:text-lg">
-            Connect, share ideas, and grow together in our active community.
+            Connect, share ideas, and grow together in our active builder community.
           </p>
           
           <a
