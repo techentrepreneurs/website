@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/hero-section";
 import { MainNavBar } from "@/components/MainNavBar";
 import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
-import { DiscordFooter } from "@/components/DiscordFooter";
+import { ModernFooter } from "@/components/ModernFooter";
 import { StatsSection } from "@/components/StatsSection";
 import { recentProjects, trendingProjects, newBuilderProjects } from "@/lib/projectData";
 import { ExternalLink } from "lucide-react";
@@ -59,7 +59,7 @@ export default function Home() {
         </section>
       </main>
       
-      <DiscordFooter logoUrl="/logo.png" />
+      <ModernFooter logoUrl="/logo.png" discordInviteUrl="https://discord.gg/2ACAxkBhMB" />
     </div>
   );
 }
