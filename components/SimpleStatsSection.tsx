@@ -2,27 +2,23 @@
 
 import StatsCounter from "@/components/ui/stats-counter";
 
-export function StatsSection() {
+export function SimpleStatsSection() {
   const stats = [
     {
       value: 500,
       label: "Active Members",
-      suffix: "+"
     },
     {
       value: 120,
       label: "Startups",
-      suffix: "+"
     },
     {
       value: 35,
       label: "Countries",
-      suffix: "+"
     },
     {
       value: 1500,
       label: "Messages/Day",
-      suffix: "+"
     }
   ];
 
@@ -34,7 +30,6 @@ export function StatsSection() {
             key={index}
             value={stat.value}
             label={stat.label}
-            suffix={stat.suffix}
           />
         ))}
       </div>
