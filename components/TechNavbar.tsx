@@ -48,7 +48,6 @@ export function TechNavbar({
     { name: "Home", href: "/", icon: Home },
     { name: "About", href: "/about", icon: Users },
     { name: "Builders", href: "/builders", icon: Users },
-    { name: "Events", href: "/events", icon: Calendar },
   ],
   ctaButton = {
     text: "Join Discord",

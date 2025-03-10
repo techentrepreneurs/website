@@ -53,11 +53,6 @@ export function DiscordFooter({ logoUrl = "/logo.png" }: DiscordFooterProps) {
                     Builders
                   </Link>
                 </li>
-                <li>
-                  <Link href="/events" className="text-gray-300 hover:text-white transition-colors">
-                    Events
-                  </Link>
-                </li>
               </ul>
             </div>
             <div>

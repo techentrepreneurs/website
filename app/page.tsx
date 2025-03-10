@@ -57,15 +57,6 @@ export default function Home() {
             newBuilderProjects={newBuilderProjects}
           />
         </section>
-        
-        <section id="events" className="py-20">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-center mb-10">Upcoming Events</h2>
-            <div className="grid place-items-center p-10 bg-muted rounded-lg">
-              <p className="text-xl text-center">Stay tuned for exciting community events!</p>
-            </div>
-          </div>
-        </section>
       </main>
       
       <DiscordFooter logoUrl="/logo.png" />
