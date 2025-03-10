@@ -65,26 +65,28 @@ export function ModernFooter({
         </div>
       </div>
       
-      {/* Simple Footer */}
+      {/* Glass Effect Footer */}
       <div className="container relative z-10 mx-auto px-4 mt-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800/30 pt-8">
-          <div className="flex items-center gap-2">
-            <Image src={logoUrl} alt="Tech Startups Logo" width={24} height={24} className="rounded-sm" />
-            <span className="text-sm font-medium text-gray-500">
-              © {new Date().getFullYear()} techstartups.gg
-            </span>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            {links.map((link, i) => (
-              <Link 
-                key={i}
-                href={link.href} 
-                className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div className="bg-background/5 border border-border backdrop-blur-lg rounded-lg shadow-lg px-6 py-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2">
+              <Image src={logoUrl} alt="Tech Startups Logo" width={24} height={24} className="rounded-sm" />
+              <span className="text-sm font-medium text-foreground/80">
+                © {new Date().getFullYear()} techstartups.gg
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-6">
+              {links.map((link, i) => (
+                <Link 
+                  key={i}
+                  href={link.href} 
+                  className="text-sm text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
