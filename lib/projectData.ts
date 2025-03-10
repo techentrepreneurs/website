@@ -1,170 +1,171 @@
 export const recentProjects = [
   {
     id: "1",
-    name: "DevMetrics",
-    description: "Analytics platform for development teams",
-    category: "SaaS",
+    name: "Artasaka",
+    description: "Creative art platform and digital content agency",
+    category: "Creative Tech",
     status: "Active" as const,
     update: {
-      message: "Just launched our beta with 50 teams onboarded! Looking for feedback on our dashboard UI.",
+      message: "Reached out to another developer to hire them for 3 months full time. If it works out well, it might transition to a full time position.",
       author: {
-        name: "Alex Chen",
-        handle: "founder_alex",
+        name: "Lost",
+        handle: "lostdoesart",
         image: ""
       },
-      timestamp: "2 days ago"
+      timestamp: "Just now"
     },
-    channelLink: "#",
-    githubLink: "https://github.com",
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    githubLink: "",
     externalLink: ""
   },
   {
     id: "2",
-    name: "CopyGenius",
-    description: "AI-powered copywriting assistant",
-    category: "AI",
-    status: "Funding" as const,
+    name: "RustGFX",
+    description: "Rust design and development services",
+    category: "Design",
+    status: "Active" as const,
     update: {
-      message: "Excited to share we've secured $1.2M in seed funding! Hiring frontend devs and ML engineers.",
+      message: "Acquired a team of 9 designers, 3 video editors and 2 developers. Made an agreement with a rust design group to handle the workload while I manage marketing.",
       author: {
-        name: "Sarah Johnson",
-        handle: "sarah_founder",
+        name: "Lost",
+        handle: "lostdoesart",
         image: ""
       },
-      timestamp: "5 days ago"
+      timestamp: "Just now"
     },
-    channelLink: "#",
-    externalLink: "https://example.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    externalLink: "https://rustgfx.com"
   },
   {
     id: "3",
-    name: "EduConnect",
-    description: "Platform connecting students with mentors",
-    category: "EdTech",
+    name: "RenTech",
+    description: "Innovative technology consulting and solutions",
+    category: "Tech Consulting",
     status: "Active" as const,
     update: {
-      message: "Launched mentor matching algorithm v2. Already seeing 40% better match quality scores!",
+      message: "Had a phenomenal call with a prospective client - big potential project in immediate pipeline.",
       author: {
-        name: "Michael Johnson",
-        handle: "mike_j",
+        name: "Midas",
+        handle: "midaswolf",
         image: ""
       },
-      timestamp: "1 week ago"
+      timestamp: "Recently"
     },
-    channelLink: "#",
-    githubLink: "https://github.com",
-    externalLink: "https://example.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    githubLink: "",
+    externalLink: ""
   }
 ];
 
 export const trendingProjects = [
   {
     id: "4",
-    name: "CarbonTracker",
-    description: "Helping companies track and reduce their carbon footprint",
-    category: "Climate",
+    name: "TeraCast Networks",
+    description: "Modern web platform and networking solutions",
+    category: "Web Development",
     status: "Active" as const,
     update: {
-      message: "Just partnered with 3 Fortune 500 companies for our enterprise pilot!",
+      message: "Main page is basically done! Currently working on tweaks, mobile support, and adding light mode styling. Next I'll focus on adding each other page.",
       author: {
-        name: "Emma Garcia",
-        handle: "emma_g",
+        name: "Patrick",
+        handle: "pyuwu17",
         image: ""
       },
-      timestamp: "3 days ago"
+      timestamp: "Recently"
     },
-    channelLink: "#",
-    externalLink: "https://example.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    externalLink: ""
   },
   {
     id: "5",
-    name: "QuickLegal",
-    description: "Automating legal document creation for startups",
-    category: "Legal Tech",
+    name: "RustGFX",
+    description: "Rust design and development services",
+    category: "Design",
     status: "Active" as const,
     update: {
-      message: "Added 15 new contract templates. Now covering most startup legal needs.",
+      message: "The team is very open to getting art direction and guidance at the start of our collaboration. Excited to grow our service offerings.",
       author: {
-        name: "David Kim",
-        handle: "davidk",
+        name: "Lost",
+        handle: "lostdoesart",
         image: ""
       },
-      timestamp: "4 days ago"
+      timestamp: "Just now"
     },
-    channelLink: "#",
-    githubLink: "https://github.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    githubLink: "",
+    externalLink: "https://rustgfx.com"
   },
   {
     id: "6",
-    name: "FitFlow",
-    description: "AI personal trainer in your pocket",
-    category: "Fitness",
+    name: "Artasaka",
+    description: "Creative art platform and digital content agency",
+    category: "Creative Tech",
     status: "Funding" as const,
     update: {
-      message: "Reached 5K users in our closed beta! Starting our seed round next month.",
+      message: "Expanding our team with new talent. Looking to grow our creative capabilities with specialized developers.",
       author: {
-        name: "Jennifer Lee",
-        handle: "jen_lee",
+        name: "Lost",
+        handle: "lostdoesart",
         image: ""
       },
-      timestamp: "1 week ago"
+      timestamp: "Just now"
     },
-    channelLink: "#",
-    externalLink: "https://example.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    externalLink: ""
   }
 ];
 
 export const newBuilderProjects = [
   {
     id: "7",
-    name: "GreenGrocer",
-    description: "Connecting consumers with local sustainable produce",
-    category: "Food Tech",
+    name: "RenTech",
+    description: "Innovative technology consulting and solutions",
+    category: "Tech Consulting",
     status: "Active" as const,
     update: {
-      message: "Officially launched in 3 cities! Onboarded 45 local farmers so far.",
+      message: "New client opportunities are expanding our project pipeline. Looking to grow our impact in the tech space.",
       author: {
-        name: "Thomas Wilson",
-        handle: "tom_w",
+        name: "Midas",
+        handle: "midaswolf",
         image: ""
       },
-      timestamp: "2 days ago"
+      timestamp: "Recently"
     },
-    channelLink: "#"
+    channelLink: "https://discord.gg/2ACAxkBhMB"
   },
   {
     id: "8",
-    name: "CryptoTax",
-    description: "Simplified tax filing for crypto investors",
-    category: "Crypto",
+    name: "TeraCast Networks",
+    description: "Modern web platform and networking solutions",
+    category: "Web Development",
     status: "Active" as const,
     update: {
-      message: "Just completed integration with 5 major exchanges. Testing our tax calculation engine.",
+      message: "Making good progress on our web platform. Planning to add more pages soon after completing current mobile optimization work.",
       author: {
-        name: "Ryan Matthews",
-        handle: "ryan_m",
+        name: "Patrick",
+        handle: "pyuwu17",
         image: ""
       },
-      timestamp: "4 days ago"
+      timestamp: "Recently"
     },
-    channelLink: "#",
-    githubLink: "https://github.com"
+    channelLink: "https://discord.gg/2ACAxkBhMB",
+    githubLink: ""
   },
   {
     id: "9",
-    name: "PetPal",
-    description: "On-demand pet care services platform",
-    category: "Pet Tech",
-    status: "Funding" as const,
+    name: "RustGFX",
+    description: "Rust design and development services",
+    category: "Design",
+    status: "Active" as const,
     update: {
-      message: "Excited to join the community! Working on our MVP and looking for early users.",
+      message: "Building a comprehensive design and development service. Recently expanded with a large team to handle all client workload.",
       author: {
-        name: "Olivia Chen",
-        handle: "olivia_c",
+        name: "Lost",
+        handle: "lostdoesart",
         image: ""
       },
-      timestamp: "1 week ago"
+      timestamp: "Just now"
     },
-    channelLink: "#"
+    channelLink: "https://discord.gg/2ACAxkBhMB"
   }
 ]; 
