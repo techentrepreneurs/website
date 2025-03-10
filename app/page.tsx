@@ -3,6 +3,7 @@ import { MainNavBar } from "@/components/MainNavBar";
 import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
 import { DiscordFooter } from "@/components/DiscordFooter";
+import { StatsSection } from "@/components/StatsSection";
 import { recentProjects, trendingProjects, newBuilderProjects } from "@/lib/projectData";
 import { ExternalLink } from "lucide-react";
 import { Icons } from "@/components/ui/icons";
@@ -27,11 +28,14 @@ export default function Home() {
             description="Join a thriving community of innovators and entrepreneurs."
             actions={[]}
             customActions={
-              <div className="mt-2 relative z-[101] pointer-events-auto">
+              <div className="mt-2 relative z-[101] pointer-events-auto flex flex-col items-center">
                 <DiscordButton 
                   href="https://discord.gg/2ACAxkBhMB" 
                   className="transform scale-110"
                 />
+                <div className="mt-16 mb-8 w-full">
+                  <StatsSection />
+                </div>
               </div>
             }
             image={{
