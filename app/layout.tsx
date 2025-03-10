@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tech Startups - techstartups.gg",
-  description: "A community for tech founders, builders, and startups to connect, share progress, and grow together.",
+  description:
+    "A community for tech founders, builders, and startups to connect, share progress, and grow together.",
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: "/favicon.ico",
   },
 };
 
