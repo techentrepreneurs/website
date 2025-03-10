@@ -28,7 +28,7 @@ export function StatsSection() {
 
   return (
     <div className="w-full max-w-[660px] mx-auto animate-appear opacity-0 delay-200">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-md">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 backdrop-blur-sm bg-white/5 p-6 rounded-2xl border border-white/10">
         {stats.map((stat, index) => (
           <StatsCounter 
             key={index}
