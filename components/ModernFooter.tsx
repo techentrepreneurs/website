@@ -55,7 +55,9 @@ export function ModernFooter({
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 Join Discord
               </span>
-              <ExternalLink className="ml-1 h-4 w-4 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+              <span className="overflow-hidden w-0 transition-all duration-300 group-hover:w-[24px] flex items-center">
+                <ExternalLink className="h-4 w-4 ml-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </span>
             </span>
           </a>
 
