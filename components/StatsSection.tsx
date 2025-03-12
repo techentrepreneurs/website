@@ -5,8 +5,8 @@ import StatsCounter from "@/components/ui/stats-counter";
 export function StatsSection() {
   const stats = [
     {
-      value: 500,
-      label: "Active Members",
+      value: 4500,
+      label: "Members",
       suffix: "+"
     },
     {
