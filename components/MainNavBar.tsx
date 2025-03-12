@@ -83,12 +83,12 @@ export function MainNavBar() {
         },
         {
           name: "Join Discord",
-          url: env.NEXT_PUBLIC_DISCORD_URL,
+          url: env.NEXT_PUBLIC_DISCORD_URL || "#",
           icon: RocketIcon,
           highlight: true,
           onClick: () => {
             window.open(
-              env.NEXT_PUBLIC_DISCORD_URL,
+              env.NEXT_PUBLIC_DISCORD_URL || "#",
               "_blank",
               "noopener,noreferrer"
             );

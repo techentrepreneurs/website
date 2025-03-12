@@ -65,7 +65,7 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
           return (
             <Link
               key={item.name}
-              href={item.url}
+              href={item.url || "#"}
               onClick={(e) => {
                 if (item.onClick) {
                   e.preventDefault()

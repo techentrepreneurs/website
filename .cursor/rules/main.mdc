@@ -1,0 +1,8 @@
+---
+description: Main coding rules to follow
+globs: 
+---
+- Analyze and plan out a solution before implementing
+- Use file search capabilities where needed to get additional context when needed
+- Keep things simple and straightforward.
+- Don't go outside of scope and add extra things. Stay in scope.
