@@ -1,0 +1,5 @@
+name = "website"
+compatibility_date = "2023-06-28"
+
+[site]
+bucket = "./out" 
