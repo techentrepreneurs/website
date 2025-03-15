@@ -22,7 +22,7 @@ interface NavBarProps {
 
 export function NavBar({ items, className, activeTabName }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(activeTabName || items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
+  const [, setIsMobile] = useState(false)
   const [isInitialRender, setIsInitialRender] = useState(true)
 
   // Set initial render to false after a small delay
@@ -77,7 +77,7 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary",
-                item.highlight && !isActive && "text-primary/90 border border-primary/30" 
+                item.highlight && !isActive && "text-primary/90 border border-primary/30"
               )}
             >
               <span className="hidden md:inline">{item.name}</span>

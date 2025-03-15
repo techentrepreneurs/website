@@ -1,11 +1,6 @@
 "use client";
 
 import React from "react";
-import { 
-  Card, 
-  CardContent,
-  CardFooter
-} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -60,7 +55,7 @@ export function FeaturedBuilderProjects({
             {description}
           </p>
         </div>
-        
+
         <Tabs defaultValue="recent" className="w-full">
           <div className="flex justify-center mb-10">
             <TabsList className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-full">
@@ -77,7 +72,7 @@ export function FeaturedBuilderProjects({
               ))}
             </div>
           </TabsContent>
-          
+
           <TabsContent value="trending" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {trendingProjects.slice(0, 3).map((project) => (
@@ -85,7 +80,7 @@ export function FeaturedBuilderProjects({
               ))}
             </div>
           </TabsContent>
-          
+
           <TabsContent value="new" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {newBuilderProjects.slice(0, 3).map((project) => (
@@ -100,7 +95,7 @@ export function FeaturedBuilderProjects({
 }
 
 function getCategoryBorderColor(category?: string): string {
-  switch(category?.toLowerCase()) {
+  switch (category?.toLowerCase()) {
     case 'saas':
       return 'border-purple-500/30';
     case 'ai':
@@ -113,7 +108,7 @@ function getCategoryBorderColor(category?: string): string {
 }
 
 function getCategoryLabel(category?: string): string {
-  switch(category?.toLowerCase()) {
+  switch (category?.toLowerCase()) {
     case 'saas':
       return 'SaaS';
     case 'ai':
@@ -128,7 +123,7 @@ function getCategoryLabel(category?: string): string {
 function ProjectCard({ project }: { project: Project }) {
   const borderColor = getCategoryBorderColor(project.category);
   const categoryLabel = getCategoryLabel(project.category);
-  
+
   return (
     <div className={cn(
       "group relative rounded-xl overflow-hidden backdrop-blur-md border",
@@ -146,7 +141,7 @@ function ProjectCard({ project }: { project: Project }) {
             </Badge>
           )}
         </div>
-        
+
         {/* Title and description */}
         <div>
           <h2 className="text-xl font-bold text-white mb-2">
@@ -156,7 +151,7 @@ function ProjectCard({ project }: { project: Project }) {
             {project.description}
           </p>
         </div>
-        
+
         {/* Update message */}
         <div className="my-4 flex-grow">
           <div className="pl-3 border-l border-zinc-700/50">
@@ -165,18 +160,18 @@ function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
         </div>
-        
+
         {/* Bottom section with timestamp */}
         <div className="mt-auto pt-2">
           <div className="flex items-center text-xs text-zinc-400 mb-3">
             <Clock className="h-3.5 w-3.5 mr-1.5" />
             <span>Updated {project.update.timestamp} by @{project.update.author.handle}</span>
           </div>
-          
+
           {/* View Channel Button */}
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             className="w-full text-zinc-300 hover:text-white hover:bg-white/5 rounded-md mt-2"
             asChild
           >

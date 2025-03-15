@@ -2,17 +2,15 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, Home, Users, Calendar, ExternalLink } from "lucide-react"
+import { Menu, Home, Users, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
 import {
@@ -76,7 +74,7 @@ export function TechNavbar({
             <Image src={logoUrl} alt="Tech Entrepreneurs" width={32} height={32} />
             <span className="font-bold">TechEntrepreneurs</span>
           </Link>
-          
+
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               {navItems.map((item) => (
