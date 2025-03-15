@@ -41,7 +41,6 @@ interface HeroProps {
 
 export function HeroSection({
   badge,
-  title,
   animatedWords = ["Launch", "Grow", "Succeed"],
   description,
   actions,

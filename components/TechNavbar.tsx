@@ -54,7 +54,7 @@ export function TechNavbar({
   },
   className,
 }: TechNavbarProps) {
-  const [isMobile, setIsMobile] = useState(false)
+  const [, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
