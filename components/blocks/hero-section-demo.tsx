@@ -1,6 +1,6 @@
 "use client"
 
-import { HeroSection } from "@/components/hero-section"
+import { HeroSection } from "@/components/HeroSection"
 import { Github } from "lucide-react"
 
 export function HeroSectionDemo() {
