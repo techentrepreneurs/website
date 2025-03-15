@@ -2,7 +2,7 @@
 
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { env } from "@/lib/env";
-import { HomeIcon, Users, CalendarIcon, RocketIcon } from "lucide-react";
+import { HomeIcon, Users, RocketIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function MainNavBar() {

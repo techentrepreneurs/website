@@ -9,8 +9,6 @@ import {
   trendingProjects,
   newBuilderProjects,
 } from "@/lib/projectData";
-import { ExternalLink } from "lucide-react";
-import { Icons } from "@/components/ui/icons";
 import { DiscordButton } from "@/components/ui/discord-button";
 import { env } from "@/lib/env";
 

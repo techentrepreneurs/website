@@ -9,7 +9,7 @@ import { Container } from "@/components/ui/container";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 interface HeroAction {
   text: string;
@@ -50,18 +50,18 @@ export function HeroSection({
 }: HeroProps) {
   const { resolvedTheme } = useTheme();
   const imageSrc = resolvedTheme === "light" ? image.light : image.dark;
-  
+
   const [wordIndex, setWordIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevIndex(wordIndex);
-      setWordIndex((prevIndex) => 
+      setWordIndex((prevIndex) =>
         prevIndex === animatedWords.length - 1 ? 0 : prevIndex + 1
       );
     }, 2500);
-    
+
     return () => clearInterval(interval);
   }, [animatedWords, wordIndex]);
 
@@ -82,7 +82,7 @@ export function HeroSection({
       e.preventDefault();
       const targetId = href.substring(1);
       const element = document.getElementById(targetId);
-      
+
       if (element) {
         window.scrollTo({
           top: element.offsetTop - 80, // Adjust for navbar height
@@ -104,14 +104,14 @@ export function HeroSection({
         <div className="flex flex-col items-center gap-6 text-center sm:gap-10">
           {/* Badge */}
           {badge && (
-            <Badge 
-              variant="outline" 
+            <Badge
+              variant="outline"
               className="animate-appear gap-2 py-1.5 px-4 text-sm border-border/40 backdrop-blur-sm"
             >
               <span className="text-muted-foreground">{badge.text}</span>
-              <a 
+              <a
                 href={badge.action.href}
-                onClick={(e) => handleClick(e, badge.action.href)} 
+                onClick={(e) => handleClick(e, badge.action.href)}
                 className="flex items-center gap-1 text-foreground font-medium"
               >
                 {badge.action.text}
@@ -125,8 +125,8 @@ export function HeroSection({
             <span>Where Builders&nbsp;</span>
             <span className="relative inline-block">
               {animatedWords.map((word, index) => (
-                <span 
-                  key={word} 
+                <span
+                  key={word}
                   className={cn(
                     "absolute left-0 transition-all duration-500 ease-in-out font-bold",
                     getAnimationClasses(index),
@@ -136,7 +136,7 @@ export function HeroSection({
                   {word}
                 </span>
               ))}
-              <span className="invisible">{animatedWords.reduce((longest, word) => 
+              <span className="invisible">{animatedWords.reduce((longest, word) =>
                 word.length > longest.length ? word : longest, '')}</span>
             </span>
           </h1>
@@ -150,10 +150,10 @@ export function HeroSection({
           {actions.length > 0 && (
             <div className="relative z-10 flex animate-appear justify-center gap-4 opacity-0 delay-300">
               {actions.map((action, index) => (
-                <Button 
-                  key={index} 
-                  variant={action.variant === "glow" ? "outline" : "default"} 
-                  size="lg" 
+                <Button
+                  key={index}
+                  variant={action.variant === "glow" ? "outline" : "default"}
+                  size="lg"
                   asChild
                   className={cn(
                     "shadow-sm",
@@ -161,7 +161,7 @@ export function HeroSection({
                     action.className
                   )}
                 >
-                  <a 
+                  <a
                     href={action.href}
                     onClick={(e) => handleClick(e, action.href)}
                     className="flex items-center gap-2"
@@ -173,7 +173,7 @@ export function HeroSection({
               ))}
             </div>
           )}
-          
+
           {/* Custom Actions */}
           {customActions && (
             <div className="relative z-[99] flex items-center justify-center w-full mt-4 pointer-events-auto">
