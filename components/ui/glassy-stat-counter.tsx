@@ -24,8 +24,8 @@ export function GlassyStatCounter({ stats, className }: StatCounterProps) {
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/50 backdrop-blur-md">
         <div className="grid grid-cols-4 w-full py-6 px-4">
           {stats.map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="flex items-center justify-center"
             >
               <div className="flex flex-col items-center text-center">
@@ -49,38 +49,38 @@ export function GlassyStatCounter({ stats, className }: StatCounterProps) {
 
 function AnimatedValue({ value }: { value: number }) {
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
-  
+
   const places = value.toString().length;
-  const placeValues = Array.from({ length: places }, (_, i) => 
+  const placeValues = Array.from({ length: places }, (_, i) =>
     Math.pow(10, places - i - 1)
   );
 
   return (
     <div className="flex">
       {placeValues.map((place, i) => (
-        <Digit 
-          key={i} 
-          place={place} 
-          value={isVisible ? value : 0} 
-          animate={isVisible} 
+        <Digit
+          key={i}
+          place={place}
+          value={isVisible ? value : 0}
+          animate={isVisible}
         />
       ))}
     </div>
   );
 }
 
-function Digit({ 
-  place, 
-  value, 
-  animate 
-}: { 
-  place: number; 
-  value: number; 
+function Digit({
+  place,
+  value,
+  animate
+}: {
+  place: number;
+  value: number;
   animate: boolean;
 }) {
   const valueRoundedToPlace = Math.floor(value / place) % 10;
@@ -105,9 +105,9 @@ function Digit({
 }
 
 function Number({ mv, number }: { mv: MotionValue; number: number }) {
-  let y = useTransform(mv, (latest) => {
-    let placeValue = latest % 10;
-    let offset = (10 + number - placeValue) % 10;
+  const y = useTransform(mv, (latest) => {
+    const placeValue = latest % 10;
+    const offset = (10 + number - placeValue) % 10;
     let memo = offset * height;
     if (offset > 5) {
       memo -= 10 * height;

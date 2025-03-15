@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/hero-section";
+import { HeroSection } from "@/components/HeroSection";
 import { MainNavBar } from "@/components/MainNavBar";
 import { CommunityFeatures } from "@/components/CommunityFeatures";
 import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";

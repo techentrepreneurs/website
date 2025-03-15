@@ -156,7 +156,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="my-4 flex-grow">
           <div className="pl-3 border-l border-zinc-700/50">
             <p className="text-zinc-300 text-sm italic">
-              "{project.update.message}"
+              &quot;{project.update.message}&quot;
             </p>
           </div>
         </div>
