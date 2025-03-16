@@ -42,16 +42,16 @@ export const recentProjects = [
   },
   {
     id: "3",
-    name: "RenTech",
-    description: "Innovative technology consulting and solutions",
-    category: "Tech Consulting",
+    name: "InfraCharm",
+    description: "InfraCharm is an MSSP based out of Virginia Beach",
+    category: "System Administration",
     status: "Active" as const,
     update: {
       message:
         "Had a phenomenal call with a prospective client - big potential project in immediate pipeline.",
       author: {
-        name: "Midas",
-        handle: "midaswolf",
+        name: "Jared",
+        handle: "infracharm",
         image: "",
       },
       timestamp: "Recently",
@@ -126,21 +126,23 @@ export const trendingProjects = [
 export const newBuilderProjects = [
   {
     id: "7",
-    name: "RenTech",
-    description: "Innovative technology consulting and solutions",
-    category: "Tech Consulting",
+    name: "InfraCharm",
+    description: "InfraCharm is an MSSP based out of Virginia Beach",
+    category: "System Administration",
     status: "Active" as const,
     update: {
       message:
-        "New client opportunities are expanding our project pipeline. Looking to grow our impact in the tech space.",
+        "Had a phenomenal call with a prospective client - big potential project in immediate pipeline.",
       author: {
-        name: "Midas",
-        handle: "midaswolf",
+        name: "Jared",
+        handle: "infracharm",
         image: "",
       },
       timestamp: "Recently",
     },
     channelLink: env.NEXT_PUBLIC_DISCORD_URL,
+    githubLink: "",
+    externalLink: "",
   },
   {
     id: "8",
