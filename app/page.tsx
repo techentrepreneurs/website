@@ -1,71 +1,38 @@
-import { HeroSection } from "@/components/HeroSection";
-import { MainNavBar } from "@/components/MainNavBar";
-import { CommunityFeatures } from "@/components/CommunityFeatures";
-import { FeaturedBuilderProjects } from "@/components/FeaturedBuilderProjects";
-import { ModernFooter } from "@/components/ModernFooter";
-import { StatsSection } from "@/components/StatsSection";
-import {
-  recentProjects,
-  trendingProjects,
-  newBuilderProjects,
-} from "@/lib/projectData";
-import { DiscordButton } from "@/components/ui/discord-button";
-import { env } from "@/lib/env";
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import { GovernanceSection } from '@/components/sections/GovernanceSection'
+import { HeroSection } from '@/components/sections/HeroSection'
+import { InsideSection } from '@/components/sections/InsideSection'
+import { AllInOneSection } from '@/components/sections/AllInOneSection'
+import { DifferenceSection } from '@/components/sections/DifferenceSection'
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <MainNavBar />
+      <Header />
       <main>
-        <section id="home">
-          <HeroSection
-            badge={{
-              text: "Join our growing community",
-              action: {
-                text: "Learn more",
-                href: "#about",
-              },
-            }}
-            title="Where Builders"
-            animatedWords={["Launch", "Grow", "Succeed"]}
-            description="Join a thriving community of innovators and entrepreneurs."
-            actions={[]}
-            customActions={
-              <div className="mt-2 relative z-[101] pointer-events-auto flex flex-col items-center">
-                <div className="mb-8 w-full">
-                  <StatsSection />
-                </div>
-                <DiscordButton
-                  href={env.NEXT_PUBLIC_DISCORD_URL}
-                  className="transform scale-110 mt-8"
-                />
-              </div>
-            }
-            image={{
-              light: "/hero-banner.png",
-              dark: "/hero-banner.png",
-              alt: "Tech Startups Community",
-            }}
-          />
+        <section id="overview">
+          <HeroSection />
         </section>
 
-        <section id="about">
-          <CommunityFeatures />
+        <section id="governance">
+          <GovernanceSection />
         </section>
 
-        <section id="builders">
-          <FeaturedBuilderProjects
-            recentProjects={recentProjects}
-            trendingProjects={trendingProjects}
-            newBuilderProjects={newBuilderProjects}
-          />
+        <section id="inside">
+          <InsideSection />
+        </section>
+
+        <section id="allinone">
+          <AllInOneSection />
+        </section>
+
+        <section id="difference">
+          <DifferenceSection />
         </section>
       </main>
 
-      <ModernFooter
-        logoUrl="/logo.png"
-        discordInviteUrl={env.NEXT_PUBLIC_DISCORD_URL}
-      />
+      <Footer />
     </div>
   );
 }
