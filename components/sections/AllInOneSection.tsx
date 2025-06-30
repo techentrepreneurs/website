@@ -6,7 +6,7 @@ export function AllInOneSection() {
   return (
     <section id="overview" className="relative w-full max-w-7xl m-auto mt-16 overflow-hidden  py-12 md:py-24">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="flex flex-col space-y-6 text-center">
+        <div className="mb-16 flex flex-col space-y-6 text-center">
           <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tighter text-white">
             All in One Place
           </h1>
