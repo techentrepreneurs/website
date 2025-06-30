@@ -11,25 +11,11 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main>
-        <section id="overview">
-          <HeroSection />
-        </section>
-
-        <section id="governance">
-          <GovernanceSection />
-        </section>
-
-        <section id="inside">
-          <InsideSection />
-        </section>
-
-        <section id="allinone">
-          <AllInOneSection />
-        </section>
-
-        <section id="difference">
-          <DifferenceSection />
-        </section>
+        <HeroSection />
+        <GovernanceSection />
+        <InsideSection />
+        <AllInOneSection />
+        <DifferenceSection />
       </main>
 
       <Footer />
