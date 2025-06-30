@@ -22,8 +22,8 @@ export function HeroSection() {
             </div>
           </div>
           
-          <div className="relative lg:block overflow-hidden">
-            <div className="relative aspect-[16/9] w-[130%]">
+          <div className="relative lg:block">
+            <div className="relative aspect-[16/9] w-[130%] xl:scale-110 2xl:scale-[120%]">
               <Image
                 className="object-contain"
                 src="/assets/hero-slanted-preview.webp"
