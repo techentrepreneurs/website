@@ -1,7 +1,7 @@
 "use client";
 
 import { NavBar } from '@/components/ui/navbar'
-import { HomeIcon, SparkleIcon } from 'lucide-react'
+import { HomeIcon, SparkleIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,10 +28,10 @@ export function Header() {
     const handleScroll = () => {
       const sections = [
         { id: "overview", name: "Overview" },
-        { id: "governance", name: "Features" },
-        { id: "events", name: "Events" },
-        { id: "success-stories", name: "Success Stories" },
-        { id: "community", name: "Community" },
+        { id: "inside", name: "Features" },
+        // { id: "events", name: "Events" },
+        // { id: "success-stories", name: "Success Stories" },
+        { id: "governance", name: "Community" },
       ];
       const scrollPosition = window.scrollY + 100;
 
@@ -101,9 +101,9 @@ export function Header() {
               },
               {
                 name: "Features",
-                url: "/#governance",
+                url: "/#inside",
                 icon: SparkleIcon,
-                onClick: () => scrollToSection("governance"),
+                onClick: () => scrollToSection("inside"),
               },
               // {
               //   name: "Events",
@@ -117,12 +117,12 @@ export function Header() {
               //   icon: Users,
               //   onClick: () => scrollToSection("success-stories"),
               // },
-              // {
-              //   name: "Community",
-              //   url: "/#community",
-              //   icon: Users,
-              //   onClick: () => scrollToSection("community"),
-              // },
+              {
+                name: "Community",
+                url: "/#governance",
+                icon: UsersIcon,
+                onClick: () => scrollToSection("governance"),
+              },
             ]}
             className=""
             activeTabName={activeSection}
