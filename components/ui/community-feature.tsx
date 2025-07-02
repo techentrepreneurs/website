@@ -10,7 +10,7 @@ function CommunityFeature({ className }: CommunityFeatureProps) {
   return (
     <div className={cn("w-full py-20 lg:py-32 bg-background relative", className)}>
       {/* Subtle background effect */}
-      <div className="absolute inset-0 bg-grid-slate-200/20 [mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)] dark:bg-grid-slate-800/20" />
+      <div className="absolute inset-0 bg-grid-slate-800/20 [mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]" />
       
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col items-center mb-16 animate-appear opacity-0">
