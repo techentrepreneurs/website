@@ -19,16 +19,21 @@ export function Footer() {
         />
       </div>
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#5865F2]/10 to-transparent"></div>
+      <div
+        className="absolute inset-0 bg-gradient-to-t to-transparent"
+        style={{
+          backgroundImage: `linear-gradient(to top, rgb(var(--discord-rgb) / 0.1), transparent)`,
+        }}
+      ></div>
 
       {/* Discord Call to Action */}
       <div className="container relative z-10 mx-auto px-4 pt-24 pb-8 md:pt-32">
         <div className="flex flex-col items-center text-center gap-8">
-          <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+          <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
             You in?
           </h2>
 
-          <p className="relative z-10 w-full font-medium text-gray-400 sm:text-lg">
+          <p className="relative z-10 w-full font-medium text-muted-foreground sm:text-lg">
             Drop your intro. The rest is up to the community.
           </p>
 
@@ -37,17 +42,23 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "group relative z-[100] inline-flex h-12 cursor-pointer items-center justify-center rounded-xl bg-[#5865F2] px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-[#4752c4]",
+              "group relative z-[100] inline-flex h-12 cursor-pointer items-center justify-center rounded-xl px-8 py-3 font-medium text-foreground transition-all duration-300",
               "shadow-lg mt-4"
             )}
+            style={{
+              backgroundColor: "var(--discord)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--discord-hover)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--discord)";
+            }}
           >
             <span className="flex items-center gap-2">
-              <span className="inline-block">
-                Join Discord
-              </span>
+              <span className="inline-block">Join Discord</span>
             </span>
           </a>
-
         </div>
       </div>
 
@@ -74,10 +85,28 @@ export function Footer() {
             </div>
 
             <div className="flex items-center">
-              <span className="text-sm text-muted-foreground">Crafted by&nbsp;</span>
-              <Link href="https://www.artasaka.com" target="_blank" rel="noopener noreferrer" className="text-sm text-white hover:underline">Artasaka</Link>
-              <span className="text-sm text-muted-foreground">, coded by&nbsp;</span>
-              <Link href="https://x.com/alperortac" target="_blank" rel="noopener noreferrer" className="text-sm text-whit hover:underline">Alper</Link>
+              <span className="text-sm text-muted-foreground">
+                Crafted by&nbsp;
+              </span>
+              <Link
+                href="https://www.artasaka.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-foreground hover:underline"
+              >
+                Artasaka
+              </Link>
+              <span className="text-sm text-muted-foreground">
+                , coded by&nbsp;
+              </span>
+              <Link
+                href="https://x.com/alperortac"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-foreground hover:underline"
+              >
+                Alper
+              </Link>
             </div>
           </div>
         </div>
