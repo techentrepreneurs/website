@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: "class",
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -17,10 +17,10 @@ module.exports = {
     },
     extend: {
       maxWidth: {
-        "container": "1280px",
+        container: "1280px",
       },
       screens: {
-        "xs": "475px",
+        xs: "475px",
       },
       colors: {
         border: "var(--border)",
@@ -56,6 +56,10 @@ module.exports = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        discord: {
+          DEFAULT: "var(--discord)",
+          hover: "var(--discord-hover)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,7 +75,7 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        "appear": {
+        appear: {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
@@ -79,13 +83,15 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "appear": "appear 0.8s ease forwards",
+        appear: "appear 0.8s ease forwards",
       },
       backgroundImage: {
-        'grid-slate-200': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(226 232 240 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
-        'grid-slate-800': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(30 41 59 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+        "grid-slate-200":
+          "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(226 232 240 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+        "grid-slate-800":
+          "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(30 41 59 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} 
+};

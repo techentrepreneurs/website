@@ -1,7 +1,7 @@
 "use client";
 
 import { env } from "@/lib/env";
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React, { LinkHTMLAttributes } from "react";
 
@@ -16,16 +16,25 @@ export function DiscordButton({ compact = false }: DiscordButtonProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        compact ? "px-4 py-2.5 h-8 rounded-lg text-sm" : "px-8 py-3 h-12 rounded-xl text-lg hover:scale-105",
-        "group relative inline-flex cursor-pointer items-center justify-center bg-[#5865F2] hover:bg-[#4752c4] transition-all duration-300 font-medium text-white",
+        compact
+          ? "px-4 py-2.5 h-8 rounded-lg text-sm"
+          : "px-8 py-3 h-12 rounded-xl text-lg hover:scale-105",
+        "group relative inline-flex cursor-pointer items-center justify-center transition-all duration-300 font-medium text-foreground",
         "shadow-lg"
       )}
+      style={{
+        backgroundColor: "var(--discord)",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = "var(--discord-hover)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = "var(--discord)";
+      }}
     >
       <span className="flex items-center gap-2">
         {compact ? (
-          <span className="inline-block">
-            Join Discord
-          </span>
+          <span className="inline-block">Join Discord</span>
         ) : (
           <>
             <DiscordLogo className="h-5 w-5 transition-transform duration-300 group-hover:rotate-[-8deg]" />
