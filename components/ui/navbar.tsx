@@ -31,7 +31,7 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
   }, [activeTabName]);
 
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("flex items-center gap-1 md:gap-3", className)}>
       {items.map((item) => {
         const Icon = item.icon;
         const isActive = activeTab === item.name;
@@ -48,7 +48,7 @@ export function NavBar({ items, className, activeTabName }: NavBarProps) {
               setActiveTab(item.name);
             }}
             className={cn(
-              "relative cursor-pointer text-sm font-semibold px-4 py-2 transition-colors",
+              "relative cursor-pointer text-sm font-semibold px-2 md:px-4 py-2 transition-colors",
               "text-foreground/80 hover:text-primary",
               isActive && "text-primary",
               item.highlight &&

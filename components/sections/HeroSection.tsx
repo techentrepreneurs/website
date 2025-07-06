@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <section
       id="overview"
-      className="relative w-full max-w-7xl m-auto mt-16 py-12 md:py-24"
+      className="relative w-full max-w-7xl m-auto mt-16 py-12 md:py-24 overflow-hidden"
     >
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-2 items-center">
