@@ -20,7 +20,7 @@ export function InsideSection() {
             <div className="relative aspect-[1/1] w-full overflow-hidden rounded-lg">
               <Image
                 className="object-cover"
-                src="/assets/inside-members.webp"
+                src="/assets/inside-members.svg"
                 alt="7000+ Members"
                 fill
                 priority
