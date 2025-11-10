@@ -1,7 +1,7 @@
 "use client";
 
 import { NavBar } from '@/components/ui/navbar'
-import { HomeIcon, SparkleIcon, UsersIcon } from 'lucide-react'
+import { HomeIcon, SparkleIcon, UsersIcon, Building2Icon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -104,6 +104,11 @@ export function Header() {
                 url: "/#inside",
                 icon: SparkleIcon,
                 onClick: () => scrollToSection("inside"),
+              },
+              {
+                name: "Directory",
+                url: "/directory",
+                icon: Building2Icon,
               },
               // {
               //   name: "Events",
