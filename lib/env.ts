@@ -1,17 +1,21 @@
 import { z } from "zod";
 
 /**
- * Environment variable schema with Zod validation
- * Provides detailed error messages for missing or invalid environment variables
+ * Client-side environment variable schema
+ * Only includes NEXT_PUBLIC_* variables that are safe to expose to the client
  */
-const envSchema = z.object({
-  // Public variables (exposed to client)
+const clientEnvSchema = z.object({
   NEXT_PUBLIC_DISCORD_URL: z
     .string()
     .url("NEXT_PUBLIC_DISCORD_URL must be a valid URL")
     .default("https://discord.gg/Xrk5m6svGt"),
+});
 
-  // Server-side only variables
+/**
+ * Server-side environment variable schema
+ * Includes all environment variables (client + server)
+ */
+const serverEnvSchema = clientEnvSchema.extend({
   MONGODB_URI: z
     .string()
     .min(1, "MONGODB_URI is required for database connection")
@@ -29,13 +33,24 @@ const envSchema = z.object({
  * Parse and validate environment variables with detailed error messaging
  */
 function parseEnv() {
+  const isServer = typeof window === "undefined";
+
   try {
-    const parsed = envSchema.parse({
-      NEXT_PUBLIC_DISCORD_URL: process.env.NEXT_PUBLIC_DISCORD_URL,
-      MONGODB_URI: process.env.MONGODB_URI,
-      NODE_ENV: process.env.NODE_ENV,
-    });
-    return parsed;
+    if (isServer) {
+      // On server, validate all environment variables
+      const parsed = serverEnvSchema.parse({
+        NEXT_PUBLIC_DISCORD_URL: process.env.NEXT_PUBLIC_DISCORD_URL,
+        MONGODB_URI: process.env.MONGODB_URI,
+        NODE_ENV: process.env.NODE_ENV,
+      });
+      return parsed;
+    } else {
+      // On client, only validate public environment variables
+      const parsed = clientEnvSchema.parse({
+        NEXT_PUBLIC_DISCORD_URL: process.env.NEXT_PUBLIC_DISCORD_URL,
+      });
+      return parsed as z.infer<typeof serverEnvSchema>;
+    }
   } catch (error) {
     if (error instanceof z.ZodError) {
       // Format error messages for better readability
@@ -57,5 +72,8 @@ function parseEnv() {
 /**
  * Validated environment variables
  * Access these instead of process.env for type safety and validation
+ *
+ * Note: On the client side, only NEXT_PUBLIC_* variables are available.
+ * Server-side variables like MONGODB_URI are only accessible in server components and API routes.
  */
 export const env = parseEnv();
