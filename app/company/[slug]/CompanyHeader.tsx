@@ -30,7 +30,7 @@ export function CompanyHeader({
       </Link>
 
       {/* Banner with blurred favicon background */}
-      <div className="relative overflow-hidden rounded-lg border border-border mb-8">
+      <div className="relative overflow-hidden rounded-lg border border-border mb-6">
         {/* Blurred background */}
         {faviconUrl && (
           <div
@@ -57,11 +57,13 @@ export function CompanyHeader({
           />
 
           <div className="flex-1">
-            <h1 className="text-4xl font-bold mb-3">{name}</h1>
-            <p className="text-lg text-muted-foreground">{description}</p>
+            <h1 className="text-4xl font-bold">{name}</h1>
           </div>
         </div>
       </div>
+
+      {/* Company Description */}
+      <p className="text-lg text-muted-foreground mb-6">{description}</p>
 
       {websiteUrl && (
         <a
