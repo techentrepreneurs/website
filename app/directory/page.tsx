@@ -1,39 +1,40 @@
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { DirectoryList } from './DirectoryList'
-import { connectDB } from '@/lib/db'
-import { CompanyChannel } from '@/lib/models/CompanyChannel'
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { DirectoryList } from "./DirectoryList";
+import { connectDB } from "@/lib/db";
+import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 
 interface Company {
-  id: string
-  name: string
+  id: string;
+  name: string;
+  description: string;
+  website_url: string;
 }
 
 async function getCompanies(): Promise<Company[]> {
   try {
-    await connectDB()
-    const companies = await CompanyChannel.find({
-      $or: [
-        { is_retired: false },
-        { is_retired: { $exists: false } }
-      ]
+    await connectDB();
+    const companies = await CompanyMetadata.find({
+      website_url: { $ne: "" }, // Only include companies with a website URL
     })
-      .sort({ channel_name: 1 })
+      .sort({ name: 1 })
       .lean()
-      .exec()
+      .exec();
 
-    return companies.map(company => ({
+    return companies.map((company) => ({
       id: company._id.toString(),
-      name: company.channel_name,
-    }))
+      name: company.name,
+      description: company.description,
+      website_url: company.website_url,
+    }));
   } catch (error) {
-    console.error('Error fetching companies:', error)
-    return []
+    console.error("Error fetching companies:", error);
+    return [];
   }
 }
 
 export default async function DirectoryPage() {
-  const companies = await getCompanies()
+  const companies = await getCompanies();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -52,5 +53,5 @@ export default async function DirectoryPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
