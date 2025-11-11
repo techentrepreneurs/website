@@ -1,30 +1,42 @@
 "use client";
 
 import { NavBar } from '@/components/ui/navbar'
-import { HomeIcon, SparkleIcon, UsersIcon, Building2Icon } from 'lucide-react'
+import { HomeIcon, SparkleIcon, UsersIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { DiscordButton } from '@/components/DiscordButton'
 import styles from './Header.module.css'
+import { useRouter, usePathname } from 'next/navigation'
 
 export function Header() {
   const [activeSection, setActiveSection] = useState("Overview");
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Force Overview tab to be selected on initial load
   useEffect(() => {
-    // Set Overview as active on mount
-    setActiveSection("Overview");
-
-    // Optional: Scroll to top on initial load
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
+    // Only set Overview as active if on homepage
+    if (pathname === '/') {
+      setActiveSection("Overview");
+      // Optional: Scroll to top on initial load
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Clear active section when not on homepage
+      setActiveSection("");
+    }
+  }, [pathname]);
 
   // Handle scroll and update active section
   useEffect(() => {
+    // Only track scroll on homepage
+    if (pathname !== '/') {
+      return;
+    }
+
     const handleScroll = () => {
       const sections = [
         { id: "overview", name: "Overview" },
@@ -52,10 +64,16 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   // Handle smooth scrolling
   const scrollToSection = (sectionId: string) => {
+    // If not on homepage, navigate to homepage first
+    if (pathname !== '/') {
+      router.push(`/#${sectionId}`);
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
@@ -105,23 +123,6 @@ export function Header() {
                 icon: SparkleIcon,
                 onClick: () => scrollToSection("inside"),
               },
-              {
-                name: "Directory",
-                url: "/directory",
-                icon: Building2Icon,
-              },
-              // {
-              //   name: "Events",
-              //   url: "/#events",
-              //   icon: Users,
-              //   onClick: () => scrollToSection("events"),
-              // },
-              // {
-              //   name: "Success Stories",
-              //   url: "/#success-stories",
-              //   icon: Users,
-              //   onClick: () => scrollToSection("success-stories"),
-              // },
               {
                 name: "Community",
                 url: "/#governance",

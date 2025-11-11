@@ -21,11 +21,11 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className, activeTabName }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(activeTabName || items[0].name);
+  const [activeTab, setActiveTab] = useState(activeTabName !== undefined ? activeTabName : items[0].name);
 
   // Update active tab when activeTabName prop changes
   useEffect(() => {
-    if (activeTabName) {
+    if (activeTabName !== undefined) {
       setActiveTab(activeTabName);
     }
   }, [activeTabName]);
