@@ -29,7 +29,7 @@ export function HeroSection() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 h-12 rounded-xl text-lg font-medium text-foreground bg-secondary hover:bg-secondary/80 transition-colors shadow-lg"
               >
                 <Building2 className="h-5 w-5" />
-                Browse Directory
+                Browse Companies
               </Link>
             </div>
           </div>
