@@ -5,6 +5,9 @@ import { connectDB } from "@/lib/db";
 import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 import { ChannelSubscription } from "@/lib/models/ChannelSubscription";
 
+// Revalidate every 1 hour (3600 seconds)
+export const revalidate = 3600;
+
 interface Company {
   id: string;
   name: string;
