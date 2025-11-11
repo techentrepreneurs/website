@@ -1,6 +1,8 @@
 "use client";
 
-import { Users } from "lucide-react";
+import Link from "next/link";
+import { Users, ExternalLink } from "lucide-react";
+import { createSlug } from "@/lib/utils";
 
 interface Company {
   id: string;
@@ -27,12 +29,7 @@ export function DirectoryList({ companies }: DirectoryListProps) {
           <ul className="space-y-4">
             {companies.map((company) => (
               <li key={company.id}>
-                <a
-                  href={company.website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-stretch group cursor-pointer rounded-lg overflow-hidden border border-border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/50"
-                >
+                <div className="flex items-stretch group rounded-lg overflow-hidden border border-border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/50">
                   {/* Rank Section - Left Side */}
                   <div className="flex-shrink-0 w-16 bg-primary/10 flex items-center justify-center border-r border-border">
                     <span className="text-2xl font-bold text-primary">
@@ -40,8 +37,11 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                     </span>
                   </div>
 
-                  {/* Company Info - Right Side */}
-                  <div className="flex-1 flex items-center gap-4 p-4 bg-card">
+                  {/* Company Info - Main Link */}
+                  <Link
+                    href={`/company/${createSlug(company.name)}`}
+                    className="flex-1 flex items-center gap-4 p-4 bg-card cursor-pointer"
+                  >
                     <div className="flex-1 flex flex-col gap-2">
                       <h3 className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
                         {company.name}
@@ -56,8 +56,22 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                         {company.subscriber_count}
                       </span>
                     </div>
-                  </div>
-                </a>
+                  </Link>
+
+                  {/* External Link Button */}
+                  {company.website_url && (
+                    <a
+                      href={company.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 w-12 bg-card border-l border-border flex items-center justify-center hover:bg-accent transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                      title="Visit website"
+                    >
+                      <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                    </a>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
