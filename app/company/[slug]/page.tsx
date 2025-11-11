@@ -8,6 +8,7 @@ import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 import { connectDB } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
 import mongoose from "mongoose";
+import { CompanyHeader } from "./CompanyHeader";
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -94,35 +95,11 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
         <main className="flex-1">
           <div className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
             {/* Company Header */}
-            <div className="mb-12">
-              <h1 className="text-4xl font-bold mb-4">{company.name}</h1>
-              <p className="text-lg text-muted-foreground mb-6">
-                {company.description}
-              </p>
-              {company.website_url && (
-                <a
-                  href={company.website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                  Visit Website
-                </a>
-              )}
-            </div>
+            <CompanyHeader
+              name={company.name}
+              description={company.description}
+              websiteUrl={company.website_url}
+            />
 
             {/* Latest Updates */}
             <div>

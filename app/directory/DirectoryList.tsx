@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Users, ExternalLink } from "lucide-react";
 import { createSlug } from "@/lib/utils";
+import { CompanyFavicon } from "@/components/CompanyFavicon";
 
 interface Company {
   id: string;
@@ -42,6 +43,13 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                     href={`/company/${createSlug(company.name)}`}
                     className="flex-1 flex items-center gap-4 p-4 bg-card cursor-pointer"
                   >
+                    {/* Company Favicon */}
+                    <CompanyFavicon
+                      websiteUrl={company.website_url}
+                      companyName={company.name}
+                      size={40}
+                    />
+
                     <div className="flex-1 flex flex-col gap-2">
                       <h3 className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
                         {company.name}
