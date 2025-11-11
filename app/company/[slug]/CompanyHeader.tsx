@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { CompanyFavicon } from "@/components/CompanyFavicon";
 import { getFaviconUrl } from "@/lib/utils";
+import { ArrowLeft } from "lucide-react";
 
 interface CompanyHeaderProps {
   name: string;
@@ -18,6 +20,15 @@ export function CompanyHeader({
 
   return (
     <div className="mb-12">
+      {/* Back to Directory Button */}
+      <Link
+        href="/directory"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        View All Companies
+      </Link>
+
       {/* Banner with blurred favicon background */}
       <div className="relative overflow-hidden rounded-lg border border-border mb-8">
         {/* Blurred background */}
