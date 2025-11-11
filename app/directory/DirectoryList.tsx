@@ -1,10 +1,14 @@
 "use client";
 
+import { Users } from "lucide-react";
+
 interface Company {
   id: string;
   name: string;
   description: string;
   website_url: string;
+  subscriber_count: number;
+  rank: number;
 }
 
 interface DirectoryListProps {
@@ -20,24 +24,39 @@ export function DirectoryList({ companies }: DirectoryListProps) {
             No companies found
           </p>
         ) : (
-          <ul className="space-y-6">
+          <ul className="space-y-4">
             {companies.map((company) => (
-              <li
-                key={company.id}
-                className="border-b border-border last:border-0 pb-6 last:pb-0"
-              >
+              <li key={company.id}>
                 <a
                   href={company.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col gap-2 group cursor-pointer -mx-4 -my-2 px-4 py-2 rounded-lg transition-all duration-200 hover:bg-accent/50 hover:shadow-md hover:-translate-y-0.5"
+                  className="flex items-stretch group cursor-pointer rounded-lg overflow-hidden border border-border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/50"
                 >
-                  <h3 className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
-                    {company.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {company.description}
-                  </p>
+                  {/* Rank Section - Left Side */}
+                  <div className="flex-shrink-0 w-16 bg-primary/10 flex items-center justify-center border-r border-border">
+                    <span className="text-2xl font-bold text-primary">
+                      {company.rank}
+                    </span>
+                  </div>
+
+                  {/* Company Info - Right Side */}
+                  <div className="flex-1 flex items-center gap-4 p-4 bg-card">
+                    <div className="flex-1 flex flex-col gap-2">
+                      <h3 className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
+                        {company.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {company.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-muted-foreground flex-shrink-0">
+                      <Users className="h-4 w-4" />
+                      <span className="text-sm font-medium">
+                        {company.subscriber_count}
+                      </span>
+                    </div>
+                  </div>
                 </a>
               </li>
             ))}
