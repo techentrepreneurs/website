@@ -16,6 +16,7 @@ This document describes the complete database schema for the Discord verificatio
 | `company_updates`       | Messages from company channels           | Links to `company_channels`                   |
 | `channel_subscriptions` | User subscriptions to company channels   | Links to `company_channels` and Discord users |
 | `company_channels`      | Company channel metadata and ownership   | Links to Discord users (owners)               |
+| `company_metadata`      | AI-extracted company information         | 1:1 relationship with `company_channels`      |
 
 ---
 
@@ -305,6 +306,47 @@ Stores company channel metadata, ownership, and retirement status.
 
 ---
 
+## Collection: `company_metadata`
+
+Stores AI-extracted company information from channel messages. Has a 1:1 relationship with `company_channels`.
+
+### Document Structure
+
+```typescript
+{
+  _id: ObjectId;
+
+  // Channel Reference
+  channel_id: number; // Discord channel ID (unique, references company_channels)
+
+  // Company Information (AI-Extracted)
+  name: string; // Company name (REQUIRED)
+  description: string; // Company description (REQUIRED)
+  website_url: string; // Company website URL (OPTIONAL - can be empty string)
+
+  // Metadata
+  created_at: Date; // When metadata was first created
+  last_updated: Date; // Last time metadata was updated/refreshed
+}
+```
+
+### Indexes
+
+- `channel_id` (unique)
+
+### Relationships
+
+- `channel_id` → `company_channels.channel_id` (1:1 relationship)
+
+### Notes
+
+- Each company channel can have at most one metadata record
+- Optional collection - not all company channels may have metadata
+- Failed extractions do not create/update database records
+- Uses upsert operations - safe to re-run without creating duplicates
+
+---
+
 ## Relationships Diagram
 
 ```
@@ -318,7 +360,8 @@ Discord Users (External)
 company_channels.channel_id
     │
     ├─→ company_updates.original_channel_id
-    └─→ channel_subscriptions.channel_id
+    ├─→ channel_subscriptions.channel_id
+    └─→ company_metadata.channel_id (1:1)
 
 Discord Messages (External)
     │
@@ -341,17 +384,23 @@ MongoDB has no schema validation enabled. All constraints enforced in Python app
    - `introductions.forwarded_message_id` must be unique
    - `company_updates.original_message_id` must be unique
    - `company_channels.channel_id` must be unique
+   - `company_metadata.channel_id` must be unique
    - `{user_id, channel_id}` combination unique in `channel_subscriptions`
 
 2. **Required Fields**:
 
    - All fields listed without `| null` or `?` are required
    - Arrays can be empty `[]` unless noted otherwise
+   - `company_metadata.name` and `company_metadata.description` are strictly required (AI extraction fails if missing)
 
 3. **Enums**:
+
    - `introductions.status`: `'pending' | 'approved' | 'rejected'`
    - `subscription_history[].action`: `'subscribe' | 'unsubscribe'`
    - `voters[].vote_type`: `'upvote' | 'downvote'`
+
+4. **Optional Fields**:
+   - `company_metadata.website_url` can be empty string (not null) if not found in channel messages
 
 ---
 
@@ -441,8 +490,9 @@ interface Introduction {
 1. Created by user → stored in `company_channels`
 2. Owner(s) can post updates → stored in `company_updates`
 3. Other users can subscribe → tracked in `channel_subscriptions`
-4. Can be retired → `is_retired: true`
-5. Can be restored with 3-day grace period
+4. Metadata can be extracted → stored in `company_metadata`
+5. Can be retired → `is_retired: true`
+6. Can be restored with 3-day grace period
 
 ### Subscription System
 
@@ -451,7 +501,21 @@ interface Introduction {
 - History tracks all subscription changes
 - Bot sends notifications when subscribed channels post updates
 
+### Metadata Extraction Flow
+
+1. Admin runs `/extract-metadata` command
+2. Bot filters channels needing metadata (no metadata or stale >30 days)
+3. For each channel:
+   - Scrapes all non-bot messages (1 second delay per message)
+   - Formats content in-memory (no local files saved)
+   - Sends content to Claude AI for analysis
+   - Validates required fields (name, description)
+   - Upserts metadata to database
+4. Progress updates sent every 5 channels
+5. Final statistics summary sent to admin
+6. Bot remains fully functional during entire process (non-blocking)
+
 ---
 
 **Last Updated**: 2025-11-10
-**Schema Version**: Current (as of commit c77c746)
+**Schema Version**: Current (includes `company_metadata` collection with AI extraction)

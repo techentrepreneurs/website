@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { DiscordButton } from "../DiscordButton";
+import { Building2 } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -20,8 +22,15 @@ export function HeroSection() {
             <p className="text-lg text-muted-foreground">
               A private space for founders to connect, ship, and grow.
             </p>
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <DiscordButton />
+              <Link
+                href="/directory"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 h-12 rounded-xl text-lg font-medium text-foreground bg-secondary hover:bg-secondary/80 transition-colors shadow-lg"
+              >
+                <Building2 className="h-5 w-5" />
+                Browse Companies
+              </Link>
             </div>
           </div>
 
