@@ -107,6 +107,17 @@ export function Footer() {
               >
                 Alper
               </Link>
+              <span className="text-sm text-muted-foreground">
+                &nbsp;and&nbsp;
+              </span>
+              <Link
+                href="https://willness.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-foreground hover:underline"
+              >
+                Will
+              </Link>
             </div>
           </div>
         </div>
