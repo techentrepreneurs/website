@@ -1,4 +1,5 @@
 # Tech Stack Overview
+
 **Date:** November 10, 2025
 
 ## Executive Summary
@@ -10,12 +11,14 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Core Framework & Runtime
 
 ### Next.js 15.2.1-canary.1
+
 - **App Router** architecture for modern React patterns
 - **Static export mode** (`output: "export"`) for JAMstack deployment
 - **Turbopack** enabled for faster development builds
 - Image optimization configured for external domains (imgur.com, unsplash.com)
 
 ### React 19.0.0
+
 - Latest React version with concurrent features
 - React Server Components (RSC) support
 - Enhanced performance and developer experience
@@ -25,6 +28,7 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## UI & Component Architecture
 
 ### shadcn/ui + Radix UI
+
 - **shadcn/ui** component library (New York style variant)
 - Built on **Radix UI primitives** for accessibility-first components:
   - Avatar, Checkbox, Dialog, Label, Navigation Menu
@@ -36,18 +40,21 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Styling & Design System
 
 ### Tailwind CSS 4
+
 - Utility-first CSS framework with PostCSS integration
 - Custom design tokens using CSS variables
 - **Dark mode support** (class-based theming via `next-themes`)
 - Custom animations and keyframes
 
 ### Utility Libraries
+
 - **Class Variance Authority** (CVA) for component variant management
 - **clsx** for conditional class names
 - **tailwind-merge** for intelligent class merging
 - **tailwindcss-animate** for animation utilities
 
 ### Typography
+
 - **Geist Sans** - Primary font family
 - **Geist Mono** - Monospace font for code
 
@@ -56,11 +63,13 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Animation & Interactivity
 
 ### Framer Motion 12.4.10
+
 - Production-ready animation library
 - Declarative animations for React components
 - Gesture support and layout animations
 
 ### Icons
+
 - **Lucide React** (v0.476.0) - Modern, consistent icon library with 1000+ icons
 
 ---
@@ -68,6 +77,7 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Development Tools
 
 ### TypeScript 5.8.2
+
 - **Strict mode enabled** for maximum type safety
 - Target: ES2017
 - Module resolution: bundler
@@ -75,6 +85,7 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 - Full Next.js integration
 
 ### Code Quality
+
 - **ESLint 9** with Next.js configuration
 - Core Web Vitals preset for performance monitoring
 - TypeScript-aware linting rules
@@ -84,11 +95,13 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Build & Deployment
 
 ### Build Tools
+
 - Next.js built-in bundler with **Turbopack** support
 - **PostCSS** for CSS processing
 - Static asset optimization
 
 ### Deployment Platform
+
 - **Cloudflare Pages/Workers** via Wrangler
 - SPA routing support for client-side navigation
 - Edge-optimized delivery
@@ -99,11 +112,13 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Data Management
 
 ### Static Data
+
 - Local TypeScript data file (`lib/projectData.ts`)
 - No external database dependency
 - Type-safe data structures
 
 ### Environment Configuration
+
 - Environment variables for configuration
 - Discord integration support
 
@@ -111,8 +126,8 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 
 ## Package Management
 
-- **npm** and **pnpm** supported (lock files for both present)
-- Comprehensive dependency management
+- **npm** for dependency management
+- Comprehensive dependency management with package-lock.json
 
 ---
 
@@ -153,6 +168,7 @@ This is a modern, statically-exported Next.js 15 application built with React 19
 ## Development Commands
 
 Based on package.json:
+
 - `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build for production (static export)
 - `npm run start` - Preview production build
