@@ -2,7 +2,7 @@
 
 ## Required Configuration in Cloudflare Dashboard
 
-To fix the build timeout issue, configure the following settings in your Cloudflare Pages project:
+Configure the following settings in your Cloudflare Pages project (Settings > Builds & deployments):
 
 ### Build Configuration
 
@@ -11,16 +11,30 @@ To fix the build timeout issue, configure the following settings in your Cloudfl
 3. **Build output directory**: `.vercel/output/static`
 4. **Root directory**: `/` (leave empty or set to root)
 
+### IMPORTANT: Disable Deploy Command
+
+Cloudflare Pages automatically deploys the build output - you do NOT need a separate deploy command.
+
+**In Cloudflare Pages Settings:**
+
+- Go to **Settings > Builds & deployments**
+- Scroll to **Deploy command** section
+- Make sure it's **EMPTY** or **DISABLED**
+- Cloudflare will automatically deploy the contents of `.vercel/output/static` after the build completes
+
 ### Environment Variables
 
 #### Build Environment Variables
+
 Set these in the Cloudflare Pages dashboard under Settings > Environment Variables:
 
 **Production:**
+
 - `NODE_VERSION`: `20.17.0`
 - `MONGODB_URI`: `your-mongodb-connection-string`
 
 **Preview (optional):**
+
 - `NODE_VERSION`: `20.17.0`
 - `MONGODB_URI`: `your-preview-mongodb-connection-string`
 
@@ -28,13 +42,15 @@ Set these in the Cloudflare Pages dashboard under Settings > Environment Variabl
 
 #### Why these changes fix the timeout:
 
-1. **`.npmrc` file**: 
+1. **`.npmrc` file**:
+
    - Configures pnpm with optimized network settings
    - Reduces network concurrency from default to 3 to prevent overwhelming Cloudflare's network
    - Adds retry logic with longer timeouts
    - Enables prefer-offline mode to use cache when possible
 
 2. **`.node-version` file**:
+
    - Ensures Cloudflare uses Node.js 20.17.0 (LTS)
    - Prevents version mismatches that can cause build issues
 
@@ -68,4 +84,3 @@ However, pnpm should work with the optimized `.npmrc` settings.
 - **Install step**: Should complete in under 2 minutes with optimized settings
 
 If install takes longer than 3 minutes, there may be a network issue with Cloudflare's build environment.
-
