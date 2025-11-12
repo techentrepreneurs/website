@@ -37,9 +37,17 @@ yarn-error.log*
 # vercel
 .vercel
 
+# opennext
+.open-next
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+cloudflare-env.d.ts
 
 # jetbrains
 .idea
+
+# cloudflare
+.dev.vars
+.wrangler
