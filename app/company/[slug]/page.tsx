@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
+import { IAttachment } from "@/lib/models/CompanyUpdate";
 import { connectDB } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
 import mongoose from "mongoose";
@@ -80,6 +81,9 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
     // Fetch latest 3 builder posts for this company
     // Use raw MongoDB connection to avoid Mongoose type casting issues with Long values
     const db = mongoose.connection.db;
+    if (!db) {
+      throw new Error("Database connection not established");
+    }
     const updates = await db
       .collection("company_updates")
       .find({
@@ -149,7 +153,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                       {/* Attachments */}
                       {update.attachments && update.attachments.length > 0 && (
                         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {update.attachments.map((attachment) => (
+                          {update.attachments.map((attachment: IAttachment) => (
                             <a
                               key={attachment.id}
                               href={attachment.url}
