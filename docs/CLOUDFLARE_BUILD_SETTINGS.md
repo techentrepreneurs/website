@@ -7,20 +7,23 @@ To fix the build timeout issue, configure the following settings in your Cloudfl
 ### Build Configuration
 
 1. **Framework preset**: `Next.js`
-2. **Build command**: `pnpm run cf:build`
+2. **Build command**: `npm run cf:build`
 3. **Build output directory**: `.vercel/output/static`
 4. **Root directory**: `/` (leave empty or set to root)
 
 ### Environment Variables
 
 #### Build Environment Variables
+
 Set these in the Cloudflare Pages dashboard under Settings > Environment Variables:
 
 **Production:**
+
 - `NODE_VERSION`: `20.17.0`
 - `MONGODB_URI`: `your-mongodb-connection-string`
 
 **Preview (optional):**
+
 - `NODE_VERSION`: `20.17.0`
 - `MONGODB_URI`: `your-preview-mongodb-connection-string`
 
@@ -28,13 +31,15 @@ Set these in the Cloudflare Pages dashboard under Settings > Environment Variabl
 
 #### Why these changes fix the timeout:
 
-1. **`.npmrc` file**: 
-   - Configures pnpm with optimized network settings
+1. **`.npmrc` file**:
+
+   - Configures npm with optimized network settings
    - Reduces network concurrency from default to 3 to prevent overwhelming Cloudflare's network
    - Adds retry logic with longer timeouts
    - Enables prefer-offline mode to use cache when possible
 
 2. **`.node-version` file**:
+
    - Ensures Cloudflare uses Node.js 20.17.0 (LTS)
    - Prevents version mismatches that can cause build issues
 
@@ -49,17 +54,7 @@ If the build still times out:
 1. **Check build logs** for specific errors
 2. **Verify environment variables** are set correctly
 3. **Clear build cache** in Cloudflare Pages settings
-4. **Try manual deployment** with `pnpm run deploy` from local machine
-
-### Alternative: Use npm instead of pnpm
-
-If pnpm continues to have issues, you can switch to npm:
-
-1. Delete `pnpm-lock.yaml`
-2. Update build command to: `npm run cf:build`
-3. Cloudflare will automatically use npm
-
-However, pnpm should work with the optimized `.npmrc` settings.
+4. **Try manual deployment** with `npm run deploy` from local machine
 
 ### Build Time Expectations
 
@@ -68,4 +63,3 @@ However, pnpm should work with the optimized `.npmrc` settings.
 - **Install step**: Should complete in under 2 minutes with optimized settings
 
 If install takes longer than 3 minutes, there may be a network issue with Cloudflare's build environment.
-
