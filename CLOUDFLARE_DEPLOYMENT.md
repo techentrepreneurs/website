@@ -54,9 +54,19 @@ npm run deploy
 
 Or configure CI/CD with the following build settings:
 
-- **Build command**: `npm run build && npm run pages:build`
+- **Build command**: `pnpm run cf:build` (or `pnpm run build && pnpm run pages:build`)
 - **Build output directory**: `.vercel/output/static`
+- **Node version**: `20.17.0` (specified in `.node-version`)
+- **Package manager**: `pnpm`
 - **Environment variables**: Make sure to set `MONGODB_URI` and any other required env vars
+
+### Build Optimization
+
+The project includes a `.npmrc` file with optimized settings for Cloudflare Pages:
+
+- Faster network settings with retry logic
+- Reduced network concurrency to prevent timeouts
+- Auto-install peers enabled
 
 ## Important Notes
 
