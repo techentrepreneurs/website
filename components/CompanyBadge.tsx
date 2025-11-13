@@ -1,112 +1,204 @@
-'use client';
+"use client";
 
 interface CompanyBadgeProps {
-  variant: 'built-on' | 'ranking';
+  variant: "built-on" | "ranking";
   companyName: string;
   rank?: number;
+  subscriberCount?: number;
   companySlug: string;
+  baseUrl?: string;
+  theme?: "light" | "dark";
 }
 
-export function CompanyBadge({ variant, companyName, rank, companySlug }: CompanyBadgeProps) {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://techstartups.com';
+export function CompanyBadge({
+  variant,
+  companyName,
+  rank,
+  subscriberCount = 0,
+  companySlug,
+  baseUrl = "https://techstartups.gg",
+  theme = "dark",
+}: CompanyBadgeProps) {
   const companyUrl = `${baseUrl}/company/${companySlug}`;
 
-  if (variant === 'built-on') {
-    return (
-      <a href={companyUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', textDecoration: 'none' }}>
-        <svg width="250" height="54" viewBox="0 0 250 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Background */}
-          <rect width="250" height="54" rx="6" fill="#121212"/>
-          <rect x="0.5" y="0.5" width="249" height="53" rx="5.5" stroke="#1e1e1e"/>
+  // Theme colors
+  const isDark = theme === "dark";
+  const bgColor = isDark ? "#1a1a1a" : "#ffffff";
+  const borderColor = isDark ? "#2a2a2a" : "#e5e5e5";
+  const textPrimary = isDark ? "#ffffff" : "#1a1a1a";
+  const textSecondary = isDark ? "#9CA3AF" : "#6B7280";
+  const logoUrl = isDark
+    ? "https://techstartups.gg/logo-white.svg"
+    : "https://techstartups.gg/logo-tp.png";
+  const logoSize = isDark ? 24 : 36; // 50% larger for light mode
 
-          {/* Globe Icon */}
-          <g transform="translate(12, 15)">
-            <circle cx="12" cy="12" r="11" stroke="white" strokeWidth="1.5" fill="none"/>
-            <ellipse cx="12" cy="12" rx="5" ry="11" stroke="white" strokeWidth="1.5" fill="none"/>
-            <line x1="1" y1="12" x2="23" y2="12" stroke="white" strokeWidth="1.5"/>
-            <path d="M12 1 Q16 6 16 12 Q16 18 12 23" stroke="white" strokeWidth="1.5" fill="none"/>
-            <path d="M12 1 Q8 6 8 12 Q8 18 12 23" stroke="white" strokeWidth="1.5" fill="none"/>
-          </g>
+  if (variant === "built-on") {
+    return (
+      <a
+        href={companyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ display: "inline-block", textDecoration: "none" }}
+      >
+        <svg
+          width="280"
+          height="60"
+          viewBox="0 0 280 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Background with more rounded corners */}
+          <rect width="280" height="60" rx="16" fill={bgColor} />
+          <rect
+            x="1"
+            y="1"
+            width="278"
+            height="58"
+            rx="15"
+            stroke={borderColor}
+            strokeWidth="2"
+          />
+
+          {/* TechStartups Logo */}
+          <image
+            x={isDark ? "16" : "10"}
+            y={isDark ? "18" : "12"}
+            width={logoSize}
+            height={logoSize}
+            href={logoUrl}
+          />
 
           {/* Text */}
-          <text x="45" y="22" fill="#9CA3AF" fontSize="11" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
-            BUILT ON
+          <text
+            x="52"
+            y="22"
+            fill={textSecondary}
+            fontSize="10"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontWeight="500"
+            letterSpacing="0.5"
+          >
+            FEATURED ON
           </text>
-          <text x="45" y="38" fill="white" fontSize="14" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
+          <text
+            x="52"
+            y="44"
+            fill={textPrimary}
+            fontSize="20"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontWeight="700"
+          >
             TechStartups
+          </text>
+
+          {/* Subscriber count with upvote icon (Product Hunt style) */}
+          {/* Upvote triangle - larger */}
+          <path d="M 252 15 L 246 25 L 258 25 Z" fill={textSecondary} />
+          {/* Count - smaller */}
+          <text
+            x="252"
+            y="44"
+            fill={textPrimary}
+            fontSize="20"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontWeight="700"
+            textAnchor="middle"
+          >
+            {subscriberCount}
           </text>
         </svg>
       </a>
     );
   }
 
-  // Ranking variant
-  const rankText = rank ? `#${rank}` : '#?';
-  const onText = rank ? 'ON' : 'ON';
+  // Ranking variant - only show for top 3
+  if (!rank || rank > 3) {
+    return null;
+  }
+
+  // Medal colors based on rank
+  const medalColors = {
+    1: { main: "#FFD700", shadow: "#DAA520", text: "1" }, // Gold
+    2: { main: "#C0C0C0", shadow: "#A8A8A8", text: "2" }, // Silver
+    3: { main: "#CD7F32", shadow: "#B8732D", text: "3" }, // Bronze
+  };
+  const medal = medalColors[rank as 1 | 2 | 3];
+
+  const rankText = `#${rank} Trending Startup`;
 
   return (
-    <a href={companyUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', textDecoration: 'none' }}>
-      <svg width="250" height="54" viewBox="0 0 250 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Background */}
-        <rect width="250" height="54" rx="6" fill="#121212"/>
-        <rect x="0.5" y="0.5" width="249" height="53" rx="5.5" stroke="#1e1e1e"/>
+    <a
+      href={companyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ display: "inline-block", textDecoration: "none" }}
+    >
+      <svg
+        width="280"
+        height="60"
+        viewBox="0 0 280 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Background with more rounded corners */}
+        <rect width="280" height="60" rx="16" fill={bgColor} />
+        <rect
+          x="1"
+          y="1"
+          width="278"
+          height="58"
+          rx="15"
+          stroke={borderColor}
+          strokeWidth="2"
+        />
 
-        {/* Trophy Icon */}
-        <g transform="translate(12, 15)">
-          <path d="M7 8h10M7 8c-2 0-3-1-3-3s1-3 3-3M7 8v7c0 2 1.5 4 5 4s5-2 5-4V8M17 8c2 0 3-1 3-3s-1-3-3-3"
-                stroke="#FFD700" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9 19h6l1 3H8l1-3z" stroke="#FFD700" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Medal Icon (replacing logo) */}
+        <g transform="translate(16, 15)">
+          {/* Ribbon */}
+          <path d="M 8 0 L 12 8 L 15 6 L 15 0 Z" fill={medal.main} />
+          <path d="M 22 0 L 18 8 L 15 6 L 15 0 Z" fill={medal.shadow} />
+          {/* Medal circle */}
+          <circle cx="15" cy="15" r="12" fill={medal.main} />
+          <circle cx="15" cy="15" r="10" fill={medal.shadow} />
+          {/* Number */}
+          <text
+            x="15"
+            y="21"
+            fill={bgColor}
+            fontSize="14"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontWeight="700"
+            textAnchor="middle"
+          >
+            {medal.text}
+          </text>
         </g>
 
-        {/* Rank Number */}
-        <text x="45" y="27" fill="white" fontSize="18" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700">
-          {rankText}
+        {/* Tech Startups text (replacing "Built On") */}
+        <text
+          x="52"
+          y="22"
+          fill={textSecondary}
+          fontSize="10"
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fontWeight="500"
+          letterSpacing="0.5"
+        >
+          TECH STARTUPS
         </text>
 
-        {/* On TechStartups text */}
-        <text x="45" y="40" fill="#9CA3AF" fontSize="10" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
-          {onText} TECHSTARTUPS
+        {/* Rank text (replacing "TechStartups") */}
+        <text
+          x="52"
+          y="44"
+          fill={textPrimary}
+          fontSize="20"
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fontWeight="700"
+        >
+          {rankText}
         </text>
       </svg>
     </a>
   );
-}
-
-export function getBuiltOnBadgeHTML(companyName: string, companySlug: string, baseUrl: string = 'https://techstartups.com'): string {
-  const companyUrl = `${baseUrl}/company/${companySlug}`;
-
-  return `<a href="${companyUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
-  <svg width="250" height="54" viewBox="0 0 250 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="250" height="54" rx="6" fill="#121212"/>
-    <rect x="0.5" y="0.5" width="249" height="53" rx="5.5" stroke="#1e1e1e"/>
-    <g transform="translate(12, 15)">
-      <circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5" fill="none"/>
-      <ellipse cx="12" cy="12" rx="5" ry="11" stroke="white" stroke-width="1.5" fill="none"/>
-      <line x1="1" y1="12" x2="23" y2="12" stroke="white" stroke-width="1.5"/>
-      <path d="M12 1 Q16 6 16 12 Q16 18 12 23" stroke="white" stroke-width="1.5" fill="none"/>
-      <path d="M12 1 Q8 6 8 12 Q8 18 12 23" stroke="white" stroke-width="1.5" fill="none"/>
-    </g>
-    <text x="45" y="22" fill="#9CA3AF" font-size="11" font-family="system-ui, -apple-system, sans-serif" font-weight="500">BUILT ON</text>
-    <text x="45" y="38" fill="white" font-size="14" font-family="system-ui, -apple-system, sans-serif" font-weight="600">TechStartups</text>
-  </svg>
-</a>`;
-}
-
-export function getRankingBadgeHTML(companyName: string, companySlug: string, rank: number, baseUrl: string = 'https://techstartups.com'): string {
-  const companyUrl = `${baseUrl}/company/${companySlug}`;
-  const rankText = `#${rank}`;
-
-  return `<a href="${companyUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
-  <svg width="250" height="54" viewBox="0 0 250 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="250" height="54" rx="6" fill="#121212"/>
-    <rect x="0.5" y="0.5" width="249" height="53" rx="5.5" stroke="#1e1e1e"/>
-    <g transform="translate(12, 15)">
-      <path d="M7 8h10M7 8c-2 0-3-1-3-3s1-3 3-3M7 8v7c0 2 1.5 4 5 4s5-2 5-4V8M17 8c2 0 3-1 3-3s-1-3-3-3"
-            stroke="#FFD700" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9 19h6l1 3H8l1-3z" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <text x="45" y="27" fill="white" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="700">${rankText}</text>
-    <text x="45" y="40" fill="#9CA3AF" font-size="10" font-family="system-ui, -apple-system, sans-serif" font-weight="500">ON TECHSTARTUPS</text>
-  </svg>
-</a>`;
 }

@@ -50,6 +50,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1-canary.1",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5.8.2",
     "wrangler": "^4.47.0"
   }

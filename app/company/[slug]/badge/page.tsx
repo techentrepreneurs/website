@@ -6,8 +6,7 @@ import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 import { ChannelSubscription } from "@/lib/models/ChannelSubscription";
 import { connectDB } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
-import { CompanyBadge, getBuiltOnBadgeHTML, getRankingBadgeHTML } from "@/components/CompanyBadge";
-import { BadgeCodeBlock } from "./BadgeCodeBlock";
+import { BadgePreview } from "./BadgePreview";
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -76,23 +75,47 @@ export default async function BadgePage({ params }: BadgePageProps) {
       notFound();
     }
 
-    // Get subscriber counts and calculate rankings
+    // Get all companies to calculate proper rankings
+    const allCompanies = await CompanyMetadata.find({}).lean().exec();
+
+    // Get subscriber counts
     const subscriberCounts = await ChannelSubscription.aggregate([
       { $match: { subscribed: true } },
       { $group: { _id: "$channel_id", count: { $sum: 1 } } },
-      { $sort: { count: -1 } },
     ]);
 
-    // Find company rank
-    const companyRank = subscriberCounts.findIndex(
-      (item) => item._id === company.channel_id
-    ) + 1;
+    // Create a map of channel_id to subscriber count
+    const countMap = new Map(
+      subscriberCounts.map((item) => [item._id.toString(), item.count])
+    );
+
+    // Combine companies with their subscriber counts
+    const companiesWithCounts = allCompanies.map((c) => ({
+      channel_id: c.channel_id.toString(),
+      name: c.name,
+      subscriber_count: countMap.get(c.channel_id.toString()) || 0,
+    }));
+
+    // Sort by subscriber count (descending), then by name (ascending) for consistent ordering
+    companiesWithCounts.sort((a, b) => {
+      if (b.subscriber_count !== a.subscriber_count) {
+        return b.subscriber_count - a.subscriber_count;
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    // Find company rank and subscriber count
+    const companyRank =
+      companiesWithCounts.findIndex(
+        (c) => c.channel_id === company.channel_id.toString()
+      ) + 1;
+
+    const companySubscriberCount =
+      countMap.get(company.channel_id.toString()) || 0;
 
     const companySlug = createSlug(company.name);
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://techstartups.com';
-
-    const builtOnHTML = getBuiltOnBadgeHTML(company.name, companySlug, baseUrl);
-    const rankingHTML = getRankingBadgeHTML(company.name, companySlug, companyRank, baseUrl);
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL || "https://techstartups.gg";
 
     return (
       <div className="flex min-h-screen flex-col">
@@ -107,50 +130,25 @@ export default async function BadgePage({ params }: BadgePageProps) {
               </p>
             </div>
 
-            {/* Badge Variants */}
+            {/* Badge */}
             <div className="space-y-12">
-              {/* Built On Badge */}
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">Built on TechStartups Badge</h2>
-                <p className="text-muted-foreground mb-6">
-                  Show that your company is featured on TechStartups
-                </p>
-
-                {/* Preview */}
-                <div className="bg-secondary rounded-lg p-8 mb-6 flex items-center justify-center">
-                  <CompanyBadge
-                    variant="built-on"
-                    companyName={company.name}
-                    companySlug={companySlug}
-                  />
-                </div>
-
-                {/* Code Snippet */}
-                <BadgeCodeBlock code={builtOnHTML} />
-              </div>
-
-              {/* Ranking Badge */}
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">
-                  #{companyRank} on TechStartups Badge
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  Display your ranking on TechStartups based on subscriber count
-                </p>
-
-                {/* Preview */}
-                <div className="bg-secondary rounded-lg p-8 mb-6 flex items-center justify-center">
-                  <CompanyBadge
-                    variant="ranking"
-                    companyName={company.name}
-                    rank={companyRank}
-                    companySlug={companySlug}
-                  />
-                </div>
-
-                {/* Code Snippet */}
-                <BadgeCodeBlock code={rankingHTML} />
-              </div>
+              <BadgePreview
+                companyName={company.name}
+                companySlug={companySlug}
+                rank={companyRank}
+                subscriberCount={companySubscriberCount}
+                baseUrl={baseUrl}
+                title={
+                  companyRank <= 3
+                    ? `#${companyRank} Trending Startup Badge`
+                    : "TechStartups Badge"
+                }
+                description={
+                  companyRank <= 3
+                    ? "Display your top 3 ranking with a medal badge"
+                    : "Show that your company is featured on TechStartups"
+                }
+              />
             </div>
 
             {/* Usage Instructions */}
@@ -158,8 +156,14 @@ export default async function BadgePage({ params }: BadgePageProps) {
               <h3 className="text-xl font-bold mb-3">How to Use</h3>
               <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                 <li>Click the "Copy HTML" button on any badge above</li>
-                <li>Paste the HTML code into your website, README, or documentation</li>
-                <li>The badge will automatically link back to your company page on TechStartups</li>
+                <li>
+                  Paste the HTML code into your website, README, or
+                  documentation
+                </li>
+                <li>
+                  The badge will automatically link back to your company page on
+                  TechStartups
+                </li>
                 <li>Badges are updated hourly to reflect current rankings</li>
               </ol>
             </div>

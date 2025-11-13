@@ -42,8 +42,9 @@ async function getCompanies(): Promise<Company[]> {
     ]);
 
     // Create a map of channel_id to subscriber count
+    // Convert Long objects to strings for proper Map key comparison
     const countMap = new Map(
-      subscriberCounts.map((item) => [item._id, item.count])
+      subscriberCounts.map((item) => [item._id.toString(), item.count])
     );
 
     // Combine company data with subscriber counts
@@ -52,7 +53,7 @@ async function getCompanies(): Promise<Company[]> {
       name: company.name,
       description: company.description,
       website_url: company.website_url,
-      subscriber_count: countMap.get(company.channel_id) || 0,
+      subscriber_count: countMap.get(company.channel_id.toString()) || 0,
       rank: 0, // Will be set after sorting
     }));
 
