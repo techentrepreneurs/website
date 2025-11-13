@@ -1,5 +1,0 @@
-ignoredBuiltDependencies:
-  - workerd
-
-onlyBuiltDependencies:
-  - esbuild
