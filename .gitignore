@@ -10,8 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
-# lock files (pnpm only)
-package-lock.json
+# lock files (ignore pnpm and yarn)
+pnpm-lock.yaml
 yarn.lock
 
 # testing
