@@ -167,6 +167,9 @@ Tracks messages posted in company channels for forwarding to a central updates f
   // Reaction Tracking
   reactionUserIds: Array<number>; // User IDs who reacted (any emoji)
 
+  // Soft Delete
+  deleted_at: Date | null; // Timestamp when the message was deleted (soft delete)
+
   // Metadata
   timestamp: Date;
   last_updated: Date;

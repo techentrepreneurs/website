@@ -86,10 +86,12 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
     }
 
     // Query using the raw channel_id (MongoDB Long object) to match the database type
+    // Filter out soft-deleted updates (where deleted_at is not null)
     const updates = await db
       .collection("company_updates")
       .find({
         original_channel_id: company.channel_id,
+        deleted_at: null, // Only fetch non-deleted updates
       })
       .sort({ created_at: -1 })
       .limit(3)
