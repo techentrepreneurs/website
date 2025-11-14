@@ -97,7 +97,7 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                     </div>
 
                     {/* Desktop: Favicon Background Section */}
-                    <div className="hidden sm:flex flex-shrink-0 w-20 relative overflow-hidden border-r border-border">
+                    <div className="hidden sm:flex flex-shrink-0 w-20 relative overflow-hidden border-r border-border items-center justify-center">
                       {/* Blurred background */}
                       {faviconUrl && (
                         <div
@@ -111,7 +111,7 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                       )}
 
                       {/* Favicon on top */}
-                      <div className="relative flex items-center justify-center h-full">
+                      <div className="relative">
                         <CompanyFavicon
                           websiteUrl={company.website_url}
                           companyName={company.name}
