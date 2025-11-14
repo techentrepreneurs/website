@@ -78,7 +78,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
       notFound();
     }
 
-    // Fetch latest 3 builder posts for this company
+    // Fetch latest builder posts for this company
     // Use raw MongoDB connection to avoid Mongoose type casting issues with Long values
     const db = mongoose.connection.db;
     if (!db) {
@@ -86,14 +86,44 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
     }
 
     // Query using the raw channel_id (MongoDB Long object) to match the database type
-    const updates = await db
+    // Fetch more than 3 to account for potential duplicates
+    const allUpdates = await db
       .collection("company_updates")
       .find({
         original_channel_id: company.channel_id,
       })
       .sort({ created_at: -1 })
-      .limit(3)
       .toArray();
+
+    // Deduplicate updates by forwarded_message_id
+    // When a message is edited, it creates a new document with a different original_message_id
+    // but the forwarded_message_id should remain the same. We keep the latest version.
+    const deduplicatedMap = new Map();
+
+    for (const update of allUpdates) {
+      const forwardedId = update.forwarded_message_id.toString();
+      const existing = deduplicatedMap.get(forwardedId);
+
+      if (!existing) {
+        deduplicatedMap.set(forwardedId, update);
+      } else {
+        // Keep the update with the most recent last_updated timestamp
+        const existingDate = new Date(existing.last_updated).getTime();
+        const currentDate = new Date(update.last_updated).getTime();
+
+        if (currentDate > existingDate) {
+          deduplicatedMap.set(forwardedId, update);
+        }
+      }
+    }
+
+    // Convert map to array and take the latest 3 updates
+    const updates = Array.from(deduplicatedMap.values())
+      .sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      )
+      .slice(0, 3);
 
     return (
       <div className="flex min-h-screen flex-col">
