@@ -73,6 +73,9 @@ export interface ICompanyUpdate extends Document {
   // Reaction Tracking
   reactionUserIds: number[];
 
+  // Soft Delete
+  deleted_at: Date | null;
+
   // Metadata
   timestamp: Date;
   last_updated: Date;
@@ -162,6 +165,9 @@ const companyUpdateSchema = new Schema<ICompanyUpdate>(
 
     // Reaction Tracking
     reactionUserIds: { type: [Number], default: [] },
+
+    // Soft Delete
+    deleted_at: { type: Date, default: null },
 
     // Metadata
     timestamp: { type: Date, default: Date.now },
