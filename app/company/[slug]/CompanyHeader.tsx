@@ -30,7 +30,7 @@ export function CompanyHeader({
       </Link>
 
       {/* Banner with blurred favicon background */}
-      <div className="relative overflow-hidden rounded-lg border border-border mb-6">
+      <div className="relative overflow-hidden rounded-lg border border-border mb-4 sm:mb-6">
         {/* Blurred background */}
         {faviconUrl && (
           <div
@@ -47,23 +47,27 @@ export function CompanyHeader({
         <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-background/30 to-background/50" />
 
         {/* Content */}
-        <div className="relative flex items-center gap-6 p-8">
+        <div className="relative flex items-center gap-3 sm:gap-6 p-4 sm:p-8">
           {/* Company Favicon */}
           <CompanyFavicon
             websiteUrl={websiteUrl}
             companyName={name}
-            size={100}
-            className="shadow-lg"
+            size={60}
+            className="shadow-lg sm:w-[100px] sm:h-[100px]"
           />
 
-          <div className="flex-1">
-            <h1 className="text-4xl font-bold">{name}</h1>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-4xl font-bold break-words">
+              {name}
+            </h1>
           </div>
         </div>
       </div>
 
       {/* Company Description */}
-      <p className="text-lg text-muted-foreground mb-6">{description}</p>
+      <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
+        {description}
+      </p>
 
       {websiteUrl && (
         <a

@@ -27,12 +27,19 @@ export function createSlug(name: string): string {
  * @param long - MongoDB Long object or number
  * @returns JavaScript number representation
  */
-export function longToNumber(long: any): number {
+export function longToNumber(long: unknown): number {
   // If it's already a number, return it
   if (typeof long === "number") return long;
 
   // If it's a MongoDB Long object, convert it
-  if (long && typeof long === "object" && "low" in long && "high" in long) {
+  if (
+    long &&
+    typeof long === "object" &&
+    "low" in long &&
+    "high" in long &&
+    typeof long.low === "number" &&
+    typeof long.high === "number"
+  ) {
     // Convert MongoDB Long to JavaScript number
     // Formula: (high * 2^32) + low (unsigned)
     // Note: This may lose precision for very large numbers (> Number.MAX_SAFE_INTEGER)

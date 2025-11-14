@@ -81,11 +81,13 @@ export default async function DirectoryPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1 pt-24 pb-16">
+      <main className="flex-1 pt-20 sm:pt-24 pb-12 sm:pb-16">
         <div className="container max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-2">Company Directory</h1>
-            <p className="text-muted-foreground">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+              Company Directory
+            </h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Discover companies building on TechStartups
             </p>
           </div>

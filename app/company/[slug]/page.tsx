@@ -101,7 +101,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
-          <div className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
+          <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 pb-8 sm:pb-12 max-w-4xl">
             {/* Company Header */}
             <CompanyHeader
               name={company.name}
@@ -111,30 +111,32 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
 
             {/* Latest Updates */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">Latest Updates</h2>
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+                Latest Updates
+              </h2>
               {updates.length === 0 ? (
                 <p className="text-muted-foreground">No updates yet.</p>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {updates.map((update) => (
                     <article
                       key={update._id.toString()}
-                      className="bg-card border border-border rounded-lg p-6"
+                      className="bg-card border border-border rounded-lg p-4 sm:p-6"
                     >
                       {/* Author Info */}
-                      <div className="flex items-center gap-3 mb-4">
+                      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                         {update.author.avatar_url && (
                           <img
                             src={update.author.avatar_url}
                             alt={update.author.display_name}
-                            className="w-10 h-10 rounded-full"
+                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
                           />
                         )}
-                        <div>
-                          <p className="font-medium">
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-sm sm:text-base truncate">
                             {update.author.display_name}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-xs sm:text-sm text-muted-foreground">
                             {new Date(update.created_at).toLocaleDateString(
                               "en-US",
                               {
@@ -148,7 +150,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                       </div>
 
                       {/* Content */}
-                      <div className="prose prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-accent prose-pre:text-foreground">
+                      <div className="prose prose-sm sm:prose-base prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-accent prose-pre:text-foreground break-words">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {update.content}
                         </ReactMarkdown>

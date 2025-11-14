@@ -33,16 +33,71 @@ export function DirectoryList({ companies }: DirectoryListProps) {
 
               return (
                 <li key={company.id}>
-                  <div className="flex items-stretch group rounded-lg overflow-hidden border border-border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/50">
-                    {/* Rank Section - Left Side */}
-                    <div className="flex-shrink-0 w-16 bg-primary/10 flex items-center justify-center border-r border-border">
+                  <div className="flex flex-col sm:flex-row items-stretch group rounded-lg overflow-hidden border border-border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/50">
+                    {/* Mobile: Top row with rank, favicon, and external link */}
+                    <div className="flex sm:hidden items-stretch border-b border-border">
+                      {/* Rank Section - Mobile */}
+                      <div className="flex-shrink-0 w-12 bg-primary/10 flex items-center justify-center border-r border-border">
+                        <span className="text-lg font-bold text-primary">
+                          {company.rank}
+                        </span>
+                      </div>
+
+                      {/* Favicon Background Section - Mobile */}
+                      <div className="flex-shrink-0 w-16 relative overflow-hidden border-r border-border">
+                        {/* Blurred background */}
+                        {faviconUrl && (
+                          <div
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${faviconUrl})`,
+                              filter: "blur(10px)",
+                              transform: "scale(1.5)",
+                            }}
+                          />
+                        )}
+
+                        {/* Favicon on top */}
+                        <div className="relative flex items-center justify-center h-full">
+                          <CompanyFavicon
+                            websiteUrl={company.website_url}
+                            companyName={company.name}
+                            size={32}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Company name - Mobile */}
+                      <div className="flex-1 px-3 py-3">
+                        <h3 className="text-foreground font-semibold text-base group-hover:text-primary transition-colors">
+                          {company.name}
+                        </h3>
+                      </div>
+
+                      {/* External Link Button - Mobile */}
+                      {company.website_url && (
+                        <a
+                          href={company.website_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-shrink-0 w-12 bg-card border-l border-border flex items-center justify-center hover:bg-accent transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                          title="Visit website"
+                        >
+                          <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Desktop: Rank Section */}
+                    <div className="hidden sm:flex flex-shrink-0 w-16 bg-primary/10 items-center justify-center border-r border-border">
                       <span className="text-2xl font-bold text-primary">
                         {company.rank}
                       </span>
                     </div>
 
-                    {/* Favicon Background Section */}
-                    <div className="flex-shrink-0 w-20 relative overflow-hidden border-r border-border">
+                    {/* Desktop: Favicon Background Section */}
+                    <div className="hidden sm:flex flex-shrink-0 w-20 relative overflow-hidden border-r border-border">
                       {/* Blurred background */}
                       {faviconUrl && (
                         <div
@@ -68,17 +123,17 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                     {/* Company Info - Main Link */}
                     <Link
                       href={`/company/${createSlug(company.name)}`}
-                      className="flex-1 flex items-center gap-4 p-4 bg-card cursor-pointer"
+                      className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 bg-card cursor-pointer"
                     >
-                      <div className="flex-1 flex flex-col gap-2">
-                        <h3 className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
+                      <div className="flex-1 flex flex-col gap-1 sm:gap-2 w-full">
+                        <h3 className="hidden sm:block text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
                           {company.name}
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {company.description}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1.5 text-muted-foreground flex-shrink-0">
+                      <div className="flex items-center gap-1.5 text-muted-foreground flex-shrink-0 self-end sm:self-auto">
                         <Users className="h-4 w-4" />
                         <span className="text-sm font-medium">
                           {company.subscriber_count}
@@ -86,13 +141,13 @@ export function DirectoryList({ companies }: DirectoryListProps) {
                       </div>
                     </Link>
 
-                    {/* External Link Button */}
+                    {/* Desktop: External Link Button */}
                     {company.website_url && (
                       <a
                         href={company.website_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-shrink-0 w-12 bg-card border-l border-border flex items-center justify-center hover:bg-accent transition-colors"
+                        className="hidden sm:flex flex-shrink-0 w-12 bg-card border-l border-border items-center justify-center hover:bg-accent transition-colors"
                         onClick={(e) => e.stopPropagation()}
                         title="Visit website"
                       >
