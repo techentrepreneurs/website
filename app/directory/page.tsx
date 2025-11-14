@@ -4,6 +4,7 @@ import { DirectoryList } from "./DirectoryList";
 import { connectDB } from "@/lib/db";
 import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 import { ChannelSubscription } from "@/lib/models/ChannelSubscription";
+import { longToNumber } from "@/lib/utils";
 
 // Revalidate every 1 hour (3600 seconds)
 export const revalidate = 3600;
@@ -42,19 +43,24 @@ async function getCompanies(): Promise<Company[]> {
     ]);
 
     // Create a map of channel_id to subscriber count
+    // Convert MongoDB Long objects to numbers for proper Map key matching
     const countMap = new Map(
-      subscriberCounts.map((item) => [item._id, item.count])
+      subscriberCounts.map((item) => [longToNumber(item._id), item.count])
     );
 
     // Combine company data with subscriber counts
-    const companiesWithCounts = companies.map((company) => ({
-      id: company._id.toString(),
-      name: company.name,
-      description: company.description,
-      website_url: company.website_url,
-      subscriber_count: countMap.get(company.channel_id) || 0,
-      rank: 0, // Will be set after sorting
-    }));
+    const companiesWithCounts = companies.map((company) => {
+      // Convert MongoDB Long to number for lookup
+      const channelIdNum = longToNumber(company.channel_id);
+      return {
+        id: company._id.toString(),
+        name: company.name,
+        description: company.description,
+        website_url: company.website_url,
+        subscriber_count: countMap.get(channelIdNum) || 0,
+        rank: 0, // Will be set after sorting
+      };
+    });
 
     // Sort by subscriber count (descending) and assign ranks
     companiesWithCounts.sort((a, b) => b.subscriber_count - a.subscriber_count);

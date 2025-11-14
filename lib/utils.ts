@@ -20,6 +20,31 @@ export function createSlug(name: string): string {
 }
 
 /**
+ * Convert MongoDB Long object to JavaScript number
+ * MongoDB stores large integers as Long objects with {low, high, unsigned} properties
+ * This function converts them back to JavaScript numbers
+ *
+ * @param long - MongoDB Long object or number
+ * @returns JavaScript number representation
+ */
+export function longToNumber(long: any): number {
+  // If it's already a number, return it
+  if (typeof long === "number") return long;
+
+  // If it's a MongoDB Long object, convert it
+  if (long && typeof long === "object" && "low" in long && "high" in long) {
+    // Convert MongoDB Long to JavaScript number
+    // Formula: (high * 2^32) + low (unsigned)
+    // Note: This may lose precision for very large numbers (> Number.MAX_SAFE_INTEGER)
+    const value = long.high * Math.pow(2, 32) + (long.low >>> 0);
+    return value;
+  }
+
+  // Default to 0 for invalid values
+  return 0;
+}
+
+/**
  * Get the favicon URL for a website using Google's favicon service
  * @param websiteUrl - The company website URL
  * @returns The favicon URL
