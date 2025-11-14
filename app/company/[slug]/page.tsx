@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
 import { IAttachment } from "@/lib/models/CompanyUpdate";
 import { connectDB } from "@/lib/db";
-import { createSlug, longToNumber } from "@/lib/utils";
+import { createSlug } from "@/lib/utils";
 import mongoose from "mongoose";
 import { CompanyHeader } from "./CompanyHeader";
 
@@ -85,13 +85,11 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
       throw new Error("Database connection not established");
     }
 
-    // Convert MongoDB Long to number for query
-    const channelIdNum = longToNumber(company.channel_id);
-
+    // Query using the raw channel_id (MongoDB Long object) to match the database type
     const updates = await db
       .collection("company_updates")
       .find({
-        original_channel_id: channelIdNum,
+        original_channel_id: company.channel_id,
       })
       .sort({ created_at: -1 })
       .limit(3)
