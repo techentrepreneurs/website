@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CompanyMetadata } from "@/lib/models/CompanyMetadata";
-import { IAttachment } from "@/lib/models/CompanyUpdate";
 import { connectDB } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
 import mongoose from "mongoose";
@@ -155,48 +154,6 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                           {update.content}
                         </ReactMarkdown>
                       </div>
-
-                      {/* Attachments */}
-                      {update.attachments && update.attachments.length > 0 && (
-                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {update.attachments.map((attachment: IAttachment) => (
-                            <a
-                              key={attachment.id}
-                              href={attachment.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block"
-                            >
-                              {attachment.content_type?.startsWith("image/") ? (
-                                <img
-                                  src={attachment.url}
-                                  alt={attachment.filename}
-                                  className="rounded-lg w-full h-auto"
-                                />
-                              ) : (
-                                <div className="flex items-center gap-2 p-3 bg-accent rounded-lg">
-                                  <svg
-                                    className="w-5 h-5"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                    />
-                                  </svg>
-                                  <span className="text-sm truncate">
-                                    {attachment.filename}
-                                  </span>
-                                </div>
-                              )}
-                            </a>
-                          ))}
-                        </div>
-                      )}
                     </article>
                   ))}
                 </div>
