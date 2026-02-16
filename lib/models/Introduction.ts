@@ -139,7 +139,7 @@ const introductionSchema = new Schema<IIntroduction>(
     original_channel_name: { type: String, required: true },
 
     // Forwarded Message Information
-    forwarded_message_id: { type: Number, required: true, unique: true },
+    forwarded_message_id: { type: Number, required: true },
     forwarded_channel_id: { type: Number, required: true },
     forwarded_channel_name: { type: String, required: true },
 

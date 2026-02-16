@@ -47,7 +47,7 @@ export interface ICompanyChannel extends Document {
 const companyChannelSchema = new Schema<ICompanyChannel>(
   {
     // Channel Information
-    channel_id: { type: Number, required: true, unique: true },
+    channel_id: { type: Number, required: true },
     channel_name: { type: String, required: true },
     category_id: { type: Number, default: null },
     guild_id: { type: Number, required: true },

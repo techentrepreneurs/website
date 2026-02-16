@@ -142,7 +142,7 @@ const categorySchema = new Schema<ICategory>(
 const companyUpdateSchema = new Schema<ICompanyUpdate>(
   {
     // Message Information
-    original_message_id: { type: Number, required: true, unique: true },
+    original_message_id: { type: Number, required: true },
     original_channel_id: { type: Number, required: true },
     original_channel_name: { type: String, required: true },
     guild_id: { type: Number, required: true },
