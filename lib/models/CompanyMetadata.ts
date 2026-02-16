@@ -25,7 +25,7 @@ export interface ICompanyMetadata extends Document {
 const companyMetadataSchema = new Schema<ICompanyMetadata>(
   {
     // Channel Reference
-    channel_id: { type: Number, required: true, unique: true },
+    channel_id: { type: Number, required: true },
 
     // Company Information (AI-Extracted)
     name: { type: String, required: true },
