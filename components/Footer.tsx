@@ -84,40 +84,48 @@ export function Footer() {
               </Link>
             </div>
 
-            <div className="flex items-center">
-              <span className="text-sm text-muted-foreground">
-                Crafted by&nbsp;
-              </span>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
               <Link
-                href="https://www.artasaka.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-foreground hover:underline"
+                href="/privacy"
+                className="text-sm text-muted-foreground hover:text-foreground hover:underline"
               >
-                Artasaka
+                Privacy Policy
               </Link>
-              <span className="text-sm text-muted-foreground">
-                , coded by&nbsp;
-              </span>
-              <Link
-                href="https://x.com/alperortac"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-foreground hover:underline"
-              >
-                Alper
-              </Link>
-              <span className="text-sm text-muted-foreground">
-                &nbsp;and&nbsp;
-              </span>
-              <Link
-                href="https://willness.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-foreground hover:underline"
-              >
-                Will
-              </Link>
+              <div className="flex items-center">
+                <span className="text-sm text-muted-foreground">
+                  Crafted by&nbsp;
+                </span>
+                <Link
+                  href="https://www.artasaka.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground hover:underline"
+                >
+                  Artasaka
+                </Link>
+                <span className="text-sm text-muted-foreground">
+                  , coded by&nbsp;
+                </span>
+                <Link
+                  href="https://x.com/alperortac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground hover:underline"
+                >
+                  Alper
+                </Link>
+                <span className="text-sm text-muted-foreground">
+                  &nbsp;and&nbsp;
+                </span>
+                <Link
+                  href="https://willness.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground hover:underline"
+                >
+                  Will
+                </Link>
+              </div>
             </div>
           </div>
         </div>
